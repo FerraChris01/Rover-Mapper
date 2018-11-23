@@ -1,0 +1,10 @@
+C:\Users\dvdma\Source\Repos\Rover\Rover\bin\Debug\Rover.exe.config
+C:\Users\dvdma\Source\Repos\Rover\Rover\bin\Debug\Rover.exe
+C:\Users\dvdma\Source\Repos\Rover\Rover\bin\Debug\Rover.pdb
+C:\Users\dvdma\Source\Repos\Rover\Rover\obj\Debug\Rover.csprojAssemblyReference.cache
+C:\Users\dvdma\Source\Repos\Rover\Rover\obj\Debug\Rover.Form1.resources
+C:\Users\dvdma\Source\Repos\Rover\Rover\obj\Debug\Rover.Properties.Resources.resources
+C:\Users\dvdma\Source\Repos\Rover\Rover\obj\Debug\Rover.csproj.GenerateResource.cache
+C:\Users\dvdma\Source\Repos\Rover\Rover\obj\Debug\Rover.csproj.CoreCompileInputs.cache
+C:\Users\dvdma\Source\Repos\Rover\Rover\obj\Debug\Rover.exe
+C:\Users\dvdma\Source\Repos\Rover\Rover\obj\Debug\Rover.pdb
