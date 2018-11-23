@@ -20,6 +20,7 @@ namespace Rover
 
         //Porta seriale al solo scopo di test (Broch la sostituirà con la lettura via bluetooth)
         private SerialPort bt;
+
         //Classe per la gestionde della mappa
         CMappa map;
         //Drawing class
@@ -40,6 +41,8 @@ namespace Rover
             //Inizializzazione componenti grafiche 
             InitializeComponent();
 
+            this.StartPosition = FormStartPosition.CenterScreen;
+
             map = new CMappa();
             g = pDraw.CreateGraphics();
             pen = new Pen(Color.Red);
@@ -47,19 +50,19 @@ namespace Rover
             //Porta seriale da sostituire con comunicazione bluetooth !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //https://social.msdn.microsoft.com/Forums/vstudio/en-US/92888551-10c7-4bde-86f3-3445d9293ada/bluetooth-communication-using-serial-ports?forum=csharpgeneral
             //Creazione porta seriale per bluetooth 
-            bt = new SerialPort("COM4", 38400);
 
-            bt.DataReceived += bt_DataReceived;
+            bt = new SerialPort("COM6", 9600);  //quella in uscita
+
+            bt.DtrEnable = true;
             bt.Open();
-
-            
-
+            bt.DataReceived += bt_DataReceived;
 
         }
         //Ogni volta che si ricevono dati da arduino
         private void bt_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-           String line = bt.ReadLine();
+            String line = bt.ReadLine();
+
             //float dx = s.ReadLine().Substring(0,2);
             //float sx =  s.ReadLine().Substring(3, 5);
             //map.add(dx, sx); //--> da sistemare
@@ -79,13 +82,27 @@ namespace Rover
         {
             //invio S quando viene premuto il tasto, TODO l'arudino capisce e starta
             //bt.Write("S");
-                                    
+            bt.WriteLine("ciao");           //prova
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             //invio W quando viene premuto il tasto, TODO l'arudino capisce e si ferma
             //bt.Write("W");
+        }
+
+        private void opzioniToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form settingsForm = new Form();
+            settingsForm.Show();
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+            Form2 newForm = new Form2();
+            newForm.StartPosition = FormStartPosition.CenterScreen;
+            newForm.Show();               
         }
     }
 }

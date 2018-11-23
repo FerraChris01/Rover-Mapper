@@ -8,3 +8,24 @@ C:\Users\dvdma\Source\Repos\Rover\Rover\obj\Debug\Rover.csproj.GenerateResource.
 C:\Users\dvdma\Source\Repos\Rover\Rover\obj\Debug\Rover.csproj.CoreCompileInputs.cache
 C:\Users\dvdma\Source\Repos\Rover\Rover\obj\Debug\Rover.exe
 C:\Users\dvdma\Source\Repos\Rover\Rover\obj\Debug\Rover.pdb
+K:\Rover master repository\Rover Mapper\c# application\Rover\Rover\bin\Debug\Rover.exe.config
+K:\Rover master repository\Rover Mapper\c# application\Rover\Rover\bin\Debug\Rover.exe
+K:\Rover master repository\Rover Mapper\c# application\Rover\Rover\bin\Debug\Rover.pdb
+K:\Rover master repository\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.csprojResolveAssemblyReference.cache
+K:\Rover master repository\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.Form1.resources
+K:\Rover master repository\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.Properties.Resources.resources
+K:\Rover master repository\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.csproj.GenerateResource.Cache
+K:\Rover master repository\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.csproj.CoreCompileInputs.cache
+K:\Rover master repository\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.exe
+K:\Rover master repository\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.pdb
+D:\Rover master repository\Rover Mapper\c# application\Rover\Rover\bin\Debug\Rover.exe.config
+D:\Rover master repository\Rover Mapper\c# application\Rover\Rover\bin\Debug\Rover.exe
+D:\Rover master repository\Rover Mapper\c# application\Rover\Rover\bin\Debug\Rover.pdb
+D:\Rover master repository\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.csprojAssemblyReference.cache
+D:\Rover master repository\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.Form1.resources
+D:\Rover master repository\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.Properties.Resources.resources
+D:\Rover master repository\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.csproj.GenerateResource.cache
+D:\Rover master repository\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.csproj.CoreCompileInputs.cache
+D:\Rover master repository\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.exe
+D:\Rover master repository\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.pdb
+D:\Rover master repository\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.Form2.resources
