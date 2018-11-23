@@ -23,6 +23,11 @@ namespace Rover
 
         //Classe per la gestionde della mappa
         CMappa map;
+        char[] array;
+        //Contatore al punto
+        int i;
+
+
         //Drawing class
         Graphics g;
         Pen pen;
@@ -44,6 +49,8 @@ namespace Rover
             this.StartPosition = FormStartPosition.CenterScreen;
 
             map = new CMappa();
+            i = 0;
+
             g = pDraw.CreateGraphics();
             pen = new Pen(Color.Red);
 
@@ -51,7 +58,7 @@ namespace Rover
             //https://social.msdn.microsoft.com/Forums/vstudio/en-US/92888551-10c7-4bde-86f3-3445d9293ada/bluetooth-communication-using-serial-ports?forum=csharpgeneral
             //Creazione porta seriale per bluetooth 
 
-            bt = new SerialPort("COM6", 9600);  //quella in uscita
+            bt = new SerialPort("COM3", 9600);  //quella in uscita
 
             bt.DtrEnable = true;
             bt.Open();
@@ -61,15 +68,24 @@ namespace Rover
         //Ogni volta che si ricevono dati da arduino
         private void bt_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            String line = bt.ReadLine();
+            
 
-            //float dx = s.ReadLine().Substring(0,2);
-            //float sx =  s.ReadLine().Substring(3, 5);
-            //map.add(dx, sx); //--> da sistemare
-            this.BeginInvoke((MethodInvoker)delegate ()
-            {
-                textBox1.Text += line;
-            });
+            array = bt.ReadLine().ToCharArray();
+                 
+            
+
+            map.add(array[0], array[1]); 
+
+            drawPoint(map.pDx[i]);
+            drawPoint(map.pSx[i]);
+
+            i++;
+
+            //ROBA PER TESTARE IL BLUETOOTH....
+            //this.BeginInvoke((MethodInvoker)delegate ()
+            //{
+            //    textBox1.Text += line;
+            //});
 
         }
 
@@ -98,6 +114,8 @@ namespace Rover
             settingsForm.Show();
         }
 
+
+        
         private void Form2_Load(object sender, EventArgs e)
         {
             Form2 newForm = new Form2();

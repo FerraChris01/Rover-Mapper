@@ -17,6 +17,7 @@ namespace Rover
         //private Point pStart;
 
         //Memorizzazion punti a destra e a sinistra del drone
+        //Punti da sostituire con una lista
         public Point[] pDx { get; }
         public Point[] pSx { get; }
         //Numero di coppie di punti memorizzate
@@ -30,7 +31,9 @@ namespace Rover
         public CMappa()
         {
             //pStart = new Point(0, 0);
-            
+
+            pDx = new Point[100];
+            pSx = new Point[100];
 
             numEl = 0;
             distFromP = 0;
@@ -44,6 +47,7 @@ namespace Rover
             distFromP++; //Incremento distanza dal punto zero
             numEl++; //Incremento numero di punti a destra e sinistra
         }
+
 
         
 

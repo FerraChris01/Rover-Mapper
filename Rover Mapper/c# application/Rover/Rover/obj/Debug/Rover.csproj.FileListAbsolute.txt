@@ -29,3 +29,13 @@ D:\Rover master repository\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rov
 D:\Rover master repository\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.exe
 D:\Rover master repository\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.pdb
 D:\Rover master repository\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.Form2.resources
+C:\Users\Samuele Peduzzi\Source\Repos\Rover-Mapper\Rover Mapper\c# application\Rover\Rover\bin\Debug\Rover.exe.config
+C:\Users\Samuele Peduzzi\Source\Repos\Rover-Mapper\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.exe
+C:\Users\Samuele Peduzzi\Source\Repos\Rover-Mapper\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.pdb
+C:\Users\Samuele Peduzzi\Source\Repos\Rover-Mapper\Rover Mapper\c# application\Rover\Rover\bin\Debug\Rover.exe
+C:\Users\Samuele Peduzzi\Source\Repos\Rover-Mapper\Rover Mapper\c# application\Rover\Rover\bin\Debug\Rover.pdb
+C:\Users\Samuele Peduzzi\Source\Repos\Rover-Mapper\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.csprojResolveAssemblyReference.cache
+C:\Users\Samuele Peduzzi\Source\Repos\Rover-Mapper\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.Form1.resources
+C:\Users\Samuele Peduzzi\Source\Repos\Rover-Mapper\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.Form2.resources
+C:\Users\Samuele Peduzzi\Source\Repos\Rover-Mapper\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.Properties.Resources.resources
+C:\Users\Samuele Peduzzi\Source\Repos\Rover-Mapper\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.csproj.GenerateResource.Cache
