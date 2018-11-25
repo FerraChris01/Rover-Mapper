@@ -14,15 +14,14 @@ namespace Rover
         //Attributi
 
         //Punto di partenza del rover (non necessario)
-        //private Point pStart;
+        private Point pStart;
 
-      
+
         //Memorizzazion punti a destra e a sinistra del drone
         //Punti da sostituire con una lista
         public List<Point> pDx { get; }
         public List<Point> pSx { get; }
-        //Numero di coppie di punti memorizzate
-        private int numEl;
+        
         //Distanza dal punto di partenza
         private int distFromP; 
        
@@ -36,21 +35,31 @@ namespace Rover
             pDx = new List<Point>(100);
             pSx = new List<Point>(100);
 
-          
             distFromP = 0;
         }
         //Il sequente metodo permette di aggiungere due nuovi punti a destra e a sinistra mediamnte le due distanze
-        public void add(int distanzaDx, int distanzaSx)
-        {
+        public void add(int distanzaDx, int distanzaSx, int orientamento) 
+        {   
+            //if (orientamento == SUD)
             pDx.Add(new Point(distanzaDx, distFromP));
             pSx.Add(new Point((distanzaDx + distanzaSx), distFromP));
-
             distFromP++; //Incremento distanza dal punto zero
-            
+
+
+            //else if (orientamento == NORD)   
+            //pDx.Add(new Point(distanzaDx, distFromP));
+            //pSx.Add(new Point((distanzaDx + distanzaSx), distFromP));
+            //distFromP--; //Decremento distanza dal punto zero
+
+            //else if (orientamento == OVEST)   
+
+            //else if (orientamento == EST)   
+
+
         }
 
 
-        
+
 
     }
 }

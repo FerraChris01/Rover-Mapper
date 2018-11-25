@@ -24,8 +24,7 @@ namespace Rover
         //Classe per la gestionde della mappa
         CMappa map;
         char[] array;
-        //Contatore al punto
-        int i;
+
 
 
         //Drawing class
@@ -57,11 +56,10 @@ namespace Rover
             //Porta seriale da sostituire con comunicazione bluetooth !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //https://social.msdn.microsoft.com/Forums/vstudio/en-US/92888551-10c7-4bde-86f3-3445d9293ada/bluetooth-communication-using-serial-ports?forum=csharpgeneral
             //Creazione porta seriale per bluetooth 
-
             bt = new SerialPort("COM7", 9600);  //quella in uscita
 
             bt.DtrEnable = true;
-            bt.Open();
+            //bt.Open();
             bt.DataReceived += bt_DataReceived;
 
         }
@@ -69,17 +67,10 @@ namespace Rover
         private void bt_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             
-
-            array = bt.ReadLine().ToCharArray();
-                 
-            
-
-            map.add(array[0], array[1]); 
-
+            array = bt.ReadLine().ToCharArray();    
+            map.add(array[0], array[1], array[2]); //Carattere 1 = dist da Dx - carattere 2 = dist da Sx - carattere 3 = angolo orienamento
             drawPoint(map.pDx.Last<Point>());
             drawPoint(map.pSx.Last<Point>());
-
-       
 
             //ROBA PER TESTARE IL BLUETOOTH....
             //this.BeginInvoke((MethodInvoker)delegate ()
@@ -98,7 +89,7 @@ namespace Rover
         {
             //invio S quando viene premuto il tasto, TODO l'arudino capisce e starta
             //bt.Write("S");
-            bt.WriteLine("ciao");           //prova
+            /*bt.WriteLine("ciao"); */          //prova
 
         }
 

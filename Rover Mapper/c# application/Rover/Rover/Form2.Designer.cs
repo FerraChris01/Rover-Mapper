@@ -71,6 +71,7 @@
             this.Name = "Form2";
             this.Text = "Settings";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.Form2_Load_1);
             this.ResumeLayout(false);
             this.PerformLayout();
 

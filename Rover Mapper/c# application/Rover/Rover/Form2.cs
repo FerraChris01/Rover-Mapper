@@ -33,5 +33,10 @@ namespace Rover
         {
             this.Hide();
         }
+
+        private void Form2_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
