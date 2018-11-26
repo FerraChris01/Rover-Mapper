@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
@@ -39,7 +40,7 @@ namespace Rover
         //Utilizzare questo metodo per disegnare un punto
         private void drawPoint(Point p)
         {
-            g.FillRectangle(b, p.X, p.Y , 2, 2);
+            g.FillRectangle(b, p.X, p.Y, 2, 2);
         }
 
         //Costruttore
@@ -73,8 +74,14 @@ namespace Rover
         //Ogni volta che si ricevono dati da arduino
         private void bt_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
+            String s = bt.ReadLine();
 
-            campi = bt.ReadLine().Split(';');
+            disegna(s);
+        }
+
+        private void disegna(string riga)
+        {
+            campi = riga.Split(';');
 
             int.TryParse(campi[0], out val0);
             int.TryParse(campi[1], out val1);
@@ -89,12 +96,11 @@ namespace Rover
             //{
             //    textBox1.Text += line;
             //});
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void bStart_Click(object sender, EventArgs e)
@@ -118,12 +124,24 @@ namespace Rover
         }
 
 
-        
+
         private void Form2_Load(object sender, EventArgs e)
         {
             Form2 newForm = new Form2();
             newForm.StartPosition = FormStartPosition.CenterScreen;
-            newForm.Show();               
+            newForm.Show();
+        }
+
+        private void DEMO_Click(object sender, EventArgs e)
+        {
+            StreamReader f = new StreamReader("input.csv");
+            String riga = "";
+            while (!f.EndOfStream)
+            {
+                riga = f.ReadLine();
+                disegna(riga);
+            }
+            f.Close();
         }
     }
 }
