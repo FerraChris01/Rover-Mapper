@@ -79,6 +79,18 @@ namespace Rover
             disegna(s);
         }
 
+        private void disegnaPixel(Point pt)
+        {
+            int scala = 10;
+
+            Point ptW  = new Point();
+            ptW.X = pt.X* scala + pDraw.Width / 2;
+            ptW.Y = pDraw.Height - pt.Y* scala;
+
+            drawPoint(map.pDx.Last<Point>());
+
+        }
+
         private void disegna(string riga)
         {
             campi = riga.Split(';');
@@ -142,6 +154,11 @@ namespace Rover
                 disegna(riga);
             }
             f.Close();
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }
