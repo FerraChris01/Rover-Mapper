@@ -12,7 +12,8 @@ using System.Windows.Forms;
 namespace Rover
 {
 
-    
+
+    //@author Peduzzi Samuele 
 
     public partial class Form1 : Form
     {
@@ -23,8 +24,10 @@ namespace Rover
 
         //Classe per la gestionde della mappa
         CMappa map;
-        char[] array;
-
+        int val0;
+        int val1;
+        int val2;
+        String[] campi;
 
 
         //Drawing class
@@ -48,7 +51,11 @@ namespace Rover
             this.StartPosition = FormStartPosition.CenterScreen;
 
             map = new CMappa();
-    
+
+            val0 = 0;
+            val1 = 0;
+            val2 = 0;
+
 
             g = pDraw.CreateGraphics();
             pen = new Pen(Color.Red);
@@ -66,9 +73,14 @@ namespace Rover
         //Ogni volta che si ricevono dati da arduino
         private void bt_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            
-            array = bt.ReadLine().ToCharArray();    
-            map.add(array[0], array[1], array[2]); //Carattere 1 = dist da Dx - carattere 2 = dist da Sx - carattere 3 = angolo orienamento
+
+            campi = bt.ReadLine().Split(';');
+
+            int.TryParse(campi[0], out val0);
+            int.TryParse(campi[1], out val1);
+            int.TryParse(campi[2], out val2);
+
+            map.add(val0, val1, val2); //Carattere 1 = dist da Dx - carattere 2 = dist da Sx - carattere 3 = angolo orienamento
             drawPoint(map.pDx.Last<Point>());
             drawPoint(map.pSx.Last<Point>());
 
