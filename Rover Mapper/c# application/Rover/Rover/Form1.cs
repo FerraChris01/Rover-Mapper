@@ -25,6 +25,8 @@ namespace Rover
 
         //Classe per la gestionde della mappa
         CMappa map;
+        //Valore di scala per la rappresentazione dei punti
+        int scala; 
         int val0;
         int val1;
         int val2;
@@ -38,7 +40,7 @@ namespace Rover
 
         //Metodi
         //Utilizzare questo metodo per disegnare un punto
-        private void drawPoint(Point p)
+        private void drawPixel(Point p)
         {
             g.FillRectangle(b, p.X, p.Y, 2, 2);
         }
@@ -52,6 +54,8 @@ namespace Rover
             this.StartPosition = FormStartPosition.CenterScreen;
 
             map = new CMappa();
+
+            scala = 10;
 
             val0 = 0;
             val1 = 0;
@@ -79,17 +83,16 @@ namespace Rover
             disegna(s);
         }
 
-        private void disegnaPixel(Point pt)
+        private void disegnaPunto(Point p)
         {
-            int scala = 10;
 
             Point ptW  = new Point();
-            ptW.X = pt.X* scala + pDraw.Width / 2;
-            ptW.Y = pDraw.Height - pt.Y* scala;
+            ptW.X = p.X * scala + pDraw.Width / 2;
+            ptW.Y = pDraw.Height - p.Y * scala;
 
-            drawPoint(map.pDx.Last<Point>());
-
+            drawPixel(ptW);
         }
+
 
         private void disegna(string riga)
         {
@@ -100,8 +103,8 @@ namespace Rover
             int.TryParse(campi[2], out val2);
 
             map.add(val0, val1, val2); //Carattere 1 = dist da Dx - carattere 2 = dist da Sx - carattere 3 = angolo orienamento
-            drawPoint(map.pDx.Last<Point>());
-            drawPoint(map.pSx.Last<Point>());
+            disegnaPunto(map.pDx.Last<Point>());
+            disegnaPunto(map.pSx.Last<Point>());
 
             //ROBA PER TESTARE IL BLUETOOTH....
             //this.BeginInvoke((MethodInvoker)delegate ()
