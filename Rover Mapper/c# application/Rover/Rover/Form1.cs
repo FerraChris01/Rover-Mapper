@@ -12,7 +12,7 @@ using System.Windows.Forms;
 namespace Rover
 {
 
-    
+    //@author Peduzzi, Ferrareis, Mauri
 
     public partial class Form1 : Form
     {
