@@ -9,12 +9,17 @@ namespace Rover
     class CRover
     {
         //Attributi
-        int posX, posY, orientamento;
+        public  int X { get; set; }
+        public  int Y { get; set; }
+        public  int orientamento { get; set; }
+
+
+        
         //Metodi
-        CRover()
+        public CRover()
         {
-            posX = 0;
-            posY = 0;
+            X = 0;
+            Y = 0;
             orientamento = 0;
 
         }

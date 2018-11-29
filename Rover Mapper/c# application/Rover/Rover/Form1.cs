@@ -83,12 +83,13 @@ namespace Rover
             disegna(s);
         }
 
+        //Scala e disegna nel piano con asse y ribaltato
         private void disegnaPunto(Point p)
         {
 
             Point ptW  = new Point();
-            ptW.X = p.X * scala + pDraw.Width / 2;
-            ptW.Y = pDraw.Height - p.Y * scala;
+            ptW.X = p.X /** scala*/ + pDraw.Width / 2;
+            ptW.Y = pDraw.Height - p.Y /** scala*/;
 
             drawPixel(ptW);
         }
