@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,8 @@ using System.Windows.Forms;
 namespace Rover
 {
 
-    //@author Peduzzi, Ferrareis, Mauri
+
+    //@author Peduzzi Samuele 
 
     public partial class Form1 : Form
     {
@@ -23,8 +25,12 @@ namespace Rover
 
         //Classe per la gestionde della mappa
         CMappa map;
-        char[] array;
-
+        //Valore di scala per la rappresentazione dei punti
+        int scala; 
+        int val0;
+        int val1;
+        int val2;
+        String[] campi;
 
 
         //Drawing class
@@ -34,9 +40,9 @@ namespace Rover
 
         //Metodi
         //Utilizzare questo metodo per disegnare un punto
-        private void drawPoint(Point p)
+        private void drawPixel(Point p)
         {
-            g.FillRectangle(b, p.X, p.Y , 2, 2);
+            g.FillRectangle(b, p.X, p.Y, 2, 2);
         }
 
         //Costruttore
@@ -48,7 +54,13 @@ namespace Rover
             this.StartPosition = FormStartPosition.CenterScreen;
 
             map = new CMappa();
-    
+
+            scala = 10;
+
+            val0 = 0;
+            val1 = 0;
+            val2 = 0;
+
 
             g = pDraw.CreateGraphics();
             pen = new Pen(Color.Red);
@@ -66,23 +78,44 @@ namespace Rover
         //Ogni volta che si ricevono dati da arduino
         private void bt_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            
-            array = bt.ReadLine().ToCharArray();    
-            map.add(array[0], array[1], array[2]); //Carattere 1 = dist da Dx - carattere 2 = dist da Sx - carattere 3 = angolo orienamento
-            drawPoint(map.pDx.Last<Point>());
-            drawPoint(map.pSx.Last<Point>());
+            String s = bt.ReadLine();
+
+            disegna(s);
+        }
+
+        private void disegnaPunto(Point p)
+        {
+
+            Point ptW  = new Point();
+            ptW.X = p.X * scala + pDraw.Width / 2;
+            ptW.Y = pDraw.Height - p.Y * scala;
+
+            drawPixel(ptW);
+        }
+
+
+        private void disegna(string riga)
+        {
+            campi = riga.Split(';');
+
+            int.TryParse(campi[0], out val0);
+            int.TryParse(campi[1], out val1);
+            int.TryParse(campi[2], out val2);
+
+            map.add(val0, val1, val2); //Carattere 1 = dist da Dx - carattere 2 = dist da Sx - carattere 3 = angolo orienamento
+            disegnaPunto(map.pDx.Last<Point>());
+            disegnaPunto(map.pSx.Last<Point>());
 
             //ROBA PER TESTARE IL BLUETOOTH....
             //this.BeginInvoke((MethodInvoker)delegate ()
             //{
             //    textBox1.Text += line;
             //});
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void bStart_Click(object sender, EventArgs e)
@@ -106,12 +139,29 @@ namespace Rover
         }
 
 
-        
+
         private void Form2_Load(object sender, EventArgs e)
         {
             Form2 newForm = new Form2();
             newForm.StartPosition = FormStartPosition.CenterScreen;
-            newForm.Show();               
+            newForm.Show();
+        }
+
+        private void DEMO_Click(object sender, EventArgs e)
+        {
+            StreamReader f = new StreamReader("input.csv");
+            String riga = "";
+            while (!f.EndOfStream)
+            {
+                riga = f.ReadLine();
+                disegna(riga);
+            }
+            f.Close();
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

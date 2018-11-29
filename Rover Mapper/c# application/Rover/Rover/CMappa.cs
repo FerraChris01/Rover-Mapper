@@ -41,18 +41,18 @@ namespace Rover
         public void add(int distanzaDx, int distanzaSx, int orientamento) 
         {   
             //if (orientamento == SUD)
-            pDx.Add(new Point(distanzaDx, distFromP));
-            pSx.Add(new Point((distanzaDx + distanzaSx), distFromP));
-            distFromP++; //Incremento distanza dal punto zero
+                pDx.Add(new Point(distanzaDx, distFromP));
+                pSx.Add(new Point((distanzaDx + distanzaSx), distFromP));
+                distFromP++; //Incremento distanza dal punto zero
 
 
             //else if (orientamento == NORD)   
-            //pDx.Add(new Point(distanzaDx, distFromP));
-            //pSx.Add(new Point((distanzaDx + distanzaSx), distFromP));
-            //distFromP--; //Decremento distanza dal punto zero
+                //pDx.Add(new Point(distanzaDx, distFromP));
+                //pSx.Add(new Point((distanzaDx + distanzaSx), distFromP));
+                //distFromP--; //Decremento distanza dal punto zero
 
             //else if (orientamento == OVEST)   
-
+                       
             //else if (orientamento == EST)   
 
 

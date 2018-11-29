@@ -36,6 +36,7 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.opzioniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.esportaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DEMO = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,6 +85,7 @@
             this.menuStrip1.Size = new System.Drawing.Size(926, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // fileToolStripMenuItem
             // 
@@ -107,11 +109,22 @@
             this.esportaToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.esportaToolStripMenuItem.Text = "Export";
             // 
+            // DEMO
+            // 
+            this.DEMO.Location = new System.Drawing.Point(11, 331);
+            this.DEMO.Name = "DEMO";
+            this.DEMO.Size = new System.Drawing.Size(100, 26);
+            this.DEMO.TabIndex = 5;
+            this.DEMO.Text = "Demo";
+            this.DEMO.UseVisualStyleBackColor = true;
+            this.DEMO.Click += new System.EventHandler(this.DEMO_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(926, 568);
+            this.Controls.Add(this.DEMO);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pDraw);
@@ -138,6 +151,7 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem opzioniToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem esportaToolStripMenuItem;
+        private System.Windows.Forms.Button DEMO;
     }
 }
 
