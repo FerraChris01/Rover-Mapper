@@ -25,7 +25,7 @@ namespace Rover
         public List<Point> pSx { get; }
 
         //Distanza dal punto di partenza
-        private int distFromP;
+        //private int distFromP;
 
         //Metodi
 
@@ -38,7 +38,7 @@ namespace Rover
             pDx = new List<Point>(100);
             pSx = new List<Point>(100);
 
-            distFromP = 0;
+            //distFromP = 0;
         }
         //Il sequente metodo permette di aggiungere due nuovi punti a destra e a sinistra mediamnte le due distanze
         public void add(int distanzaDx, int distanzaSx, int orientamento)
