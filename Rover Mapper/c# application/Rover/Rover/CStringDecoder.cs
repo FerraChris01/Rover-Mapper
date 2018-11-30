@@ -14,8 +14,6 @@ namespace Rover
 
     class CStringDecoder : SerialPort
     {
-        //String[] buffer;
-
 
         private int calc(String val)
         {
@@ -25,8 +23,6 @@ namespace Rover
 
             return dist;
         }
-
-       
 
         public CStringDecoder()
         {

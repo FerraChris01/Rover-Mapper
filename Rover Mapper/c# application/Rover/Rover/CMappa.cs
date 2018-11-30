@@ -12,7 +12,6 @@ namespace Rover
     class CMappa
     {
         //Attributi
-        private CStringDecoder bt;
 
         //Punto di partenza del rover (non necessario)
         //private Point pStart;
@@ -56,15 +55,13 @@ namespace Rover
             //if (orientamento == SUD)
             pDx.Add(new Point(distanzaDx, rover.Y));
             pSx.Add(new Point((distanzaDx + distanzaSx), rover.Y));
-            rover.Y++; ; //L'ordinata viene decrementata, difatti il rover si sposta verso il basso
-
-
-
+            rover.Y--;//L'ordinata viene decrementata, difatti il rover si sposta verso il basso
 
             //else if (orientamento == NORD)   
-            //pDx.Add(new Point(distanzaDx, distFromP));
-            //pSx.Add(new Point((distanzaDx + distanzaSx), distFromP));
-            //distFromP++; //L'ordinata viene decrementata, difatti il rover si sposta verso il basso
+            //pDx.Add(new Point(distanzaDx, rover.Y));
+            //pSx.Add(new Point((distanzaDx + distanzaSx), rover.Y));
+            //rover.Y++; //L'ordinata viene decrementata, difatti il rover si sposta verso il basso
+
 
             //else if (orientamento == OVEST)   
 

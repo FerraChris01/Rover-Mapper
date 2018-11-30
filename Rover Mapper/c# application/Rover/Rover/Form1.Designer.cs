@@ -55,7 +55,7 @@
             this.pDraw.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pDraw.Location = new System.Drawing.Point(141, 25);
             this.pDraw.Name = "pDraw";
-            this.pDraw.Size = new System.Drawing.Size(764, 523);
+            this.pDraw.Size = new System.Drawing.Size(874, 632);
             this.pDraw.TabIndex = 1;
             // 
             // button1
@@ -82,7 +82,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(926, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1027, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -123,7 +123,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(926, 568);
+            this.ClientSize = new System.Drawing.Size(1027, 660);
             this.Controls.Add(this.DEMO);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);

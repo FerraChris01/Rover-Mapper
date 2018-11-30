@@ -26,8 +26,9 @@ namespace Rover
 
         //Classe per la gestionde della mappa
         CMappa map;
+
         //Valore di scala per la rappresentazione dei punti
-        
+        int scala;
 
 
         //Drawing class
@@ -51,7 +52,7 @@ namespace Rover
             this.StartPosition = FormStartPosition.CenterScreen;
 
             map = new CMappa();
-
+            scala = 10;
             
             g = pDraw.CreateGraphics();
             pen = new Pen(Color.Red);
@@ -73,8 +74,8 @@ namespace Rover
         {
 
             Point ptW = new Point();
-            ptW.X = p.X /** scala*/ + pDraw.Width / 2;
-            ptW.Y = pDraw.Height - p.Y /** scala*/;
+            ptW.X = p.X * scala + pDraw.Width / 2;
+            ptW.Y = pDraw.Height/2 - p.Y /* * scala*/;
 
             drawPixel(ptW);
         }
