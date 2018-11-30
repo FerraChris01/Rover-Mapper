@@ -66,14 +66,7 @@ namespace Rover
             g = pDraw.CreateGraphics();
             pen = new Pen(Color.Red);
 
-            //Porta seriale da sostituire con comunicazione bluetooth !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            //https://social.msdn.microsoft.com/Forums/vstudio/en-US/92888551-10c7-4bde-86f3-3445d9293ada/bluetooth-communication-using-serial-ports?forum=csharpgeneral
-            //Creazione porta seriale per bluetooth 
-            //bt = new SerialPort("COM7", 9600);  //quella in uscita
-
-            //bt.DtrEnable = true;
-            //bt.Open();
-            //bt.DataReceived += bt_DataReceived;
+            
 
             bt = new Bluetooth();
 
@@ -106,6 +99,14 @@ namespace Rover
             int.TryParse(campi[1], out val1);
             int.TryParse(campi[2], out val2);
 
+            //il bluetooth da i valori di dx e sx qui
+            //PEDUZZI PUOI FARNE QUELLO CHE VUOI SULLA MAPPA, SONO I VALORI GIUSTI!!!!
+
+            bt.getDX();
+            bt.getSX();
+
+
+
             map.add(val0, val1, val2); //Carattere 1 = dist da Dx - carattere 2 = dist da Sx - carattere 3 = angolo orienamento
             disegnaPunto(map.pDx.Last<Point>());
             disegnaPunto(map.pSx.Last<Point>());
@@ -125,10 +126,10 @@ namespace Rover
         private void bStart_Click(object sender, EventArgs e)
         {
             //invio S quando viene premuto il tasto, TODO l'arudino capisce e starta
-            bt.inviaSeriale("ciao");
+            //bt.inviaSeriale("ciao");
             /*bt.WriteLine("ciao"); */          //prova
-            if (bt.getTesto() != "")
-                textBox1.Text = bt.getTesto();
+            //if (bt.getTesto() != "")
+                //textBox1.Text = bt.getTesto();
 
         }
 

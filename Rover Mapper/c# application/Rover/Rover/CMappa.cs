@@ -12,6 +12,7 @@ namespace Rover
     class CMappa
     {
         //Attributi
+        private Bluetooth bt;
 
         //Punto di partenza del rover (non necessario)
         //private Point pStart;
@@ -38,12 +39,19 @@ namespace Rover
             pDx = new List<Point>(100);
             pSx = new List<Point>(100);
 
+            bt = new Bluetooth();
+
             //distFromP = 0;
         }
         //Il sequente metodo permette di aggiungere due nuovi punti a destra e a sinistra mediamnte le due distanze
         public void add(int distanzaDx, int distanzaSx, int orientamento)
         {
 
+            //Ricevo i dati dal bluetooth
+
+
+
+            
             //I CALCOLI IN QUESTO METODO VANNO FATTI CONSIDERANDO IL PIANO TRADIZIONALE (Il form si occuperà di invertire la y)
 
 
@@ -66,7 +74,6 @@ namespace Rover
 
 
         }
-
 
 
 
