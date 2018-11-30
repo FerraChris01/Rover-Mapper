@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Rover
 {
+
+    //author Peduzzi Samuele
     class CRover
     {
         //Attributi

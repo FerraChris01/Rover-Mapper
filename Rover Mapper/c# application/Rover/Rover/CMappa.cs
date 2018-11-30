@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 namespace Rover
 {
 
-    //@author Peduzzi Samuele 
+    //@author Peduzzi Samuele , Mauri Davide
     class CMappa
     {
         //Attributi
-        private Bluetooth bt;
+        private CStringDecoder bt;
 
         //Punto di partenza del rover (non necessario)
         //private Point pStart;
@@ -38,8 +38,6 @@ namespace Rover
 
             pDx = new List<Point>(100);
             pSx = new List<Point>(100);
-
-            bt = new Bluetooth();
 
             //distFromP = 0;
         }

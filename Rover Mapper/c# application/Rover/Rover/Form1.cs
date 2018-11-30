@@ -14,7 +14,7 @@ namespace Rover
 {
 
 
-    //@author Peduzzi Samuele 
+    //@author Peduzzi
 
     public partial class Form1 : Form
     {
@@ -22,16 +22,12 @@ namespace Rover
 
         //Porta seriale al solo scopo di test (Broch la sostituirà con la lettura via bluetooth)
         //private SerialPort bt;
-        private Bluetooth bt;
+        private CStringDecoder sD;
 
         //Classe per la gestionde della mappa
         CMappa map;
         //Valore di scala per la rappresentazione dei punti
-        int scala;
-        int val0;
-        int val1;
-        int val2;
-        String[] campi;
+        
 
 
         //Drawing class
@@ -56,27 +52,20 @@ namespace Rover
 
             map = new CMappa();
 
-            scala = 10;
-
-            val0 = 0;
-            val1 = 0;
-            val2 = 0;
-
-
+            
             g = pDraw.CreateGraphics();
             pen = new Pen(Color.Red);
 
             
 
-            bt = new Bluetooth();
+            sD = new CStringDecoder("COM5",9600);
+            sD.DataReceived += bt_DataReceived;
 
         }
         //Ogni volta che si ricevono dati da arduino
         private void bt_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            //String s = bt.ReadLine();
-
-            //disegna(s);
+            disegna(sD.getDistDx(), sD.getDistSx(), sD.getOrientamento());
         }
 
         //Scala e disegna nel piano con asse y ribaltato
@@ -91,23 +80,10 @@ namespace Rover
         }
 
 
-        private void disegna(string riga)
+        private void disegna(int distDx, int distSx, int orientamento)
         {
-            campi = riga.Split(';');
-
-            int.TryParse(campi[0], out val0);
-            int.TryParse(campi[1], out val1);
-            int.TryParse(campi[2], out val2);
-
-            //il bluetooth da i valori di dx e sx qui
-            //PEDUZZI PUOI FARNE QUELLO CHE VUOI SULLA MAPPA, SONO I VALORI GIUSTI!!!!
-
-            bt.getDX();
-            bt.getSX();
-
-
-
-            map.add(val0, val1, val2); //Carattere 1 = dist da Dx - carattere 2 = dist da Sx - carattere 3 = angolo orienamento
+            
+            map.add(distDx, distSx, orientamento); //Carattere 1 = dist da Dx - carattere 2 = dist da Sx - carattere 3 = angolo orienamento
             disegnaPunto(map.pDx.Last<Point>());
             disegnaPunto(map.pSx.Last<Point>());
 
@@ -161,7 +137,7 @@ namespace Rover
             while (!f.EndOfStream)
             {
                 riga = f.ReadLine();
-                disegna(riga);
+                disegna(sD.getDistDx(riga), sD.getDistSx(riga), sD.getOrientamento(riga));
             }
             f.Close();
         }
