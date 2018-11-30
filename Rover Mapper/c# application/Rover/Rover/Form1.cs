@@ -21,12 +21,13 @@ namespace Rover
         //Attributi 
 
         //Porta seriale al solo scopo di test (Broch la sostituirà con la lettura via bluetooth)
-        private SerialPort bt;
+        //private SerialPort bt;
+        private Bluetooth bt;
 
         //Classe per la gestionde della mappa
         CMappa map;
         //Valore di scala per la rappresentazione dei punti
-        int scala; 
+        int scala;
         int val0;
         int val1;
         int val2;
@@ -68,26 +69,28 @@ namespace Rover
             //Porta seriale da sostituire con comunicazione bluetooth !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //https://social.msdn.microsoft.com/Forums/vstudio/en-US/92888551-10c7-4bde-86f3-3445d9293ada/bluetooth-communication-using-serial-ports?forum=csharpgeneral
             //Creazione porta seriale per bluetooth 
-            bt = new SerialPort("COM7", 9600);  //quella in uscita
+            //bt = new SerialPort("COM7", 9600);  //quella in uscita
 
-            bt.DtrEnable = true;
+            //bt.DtrEnable = true;
             //bt.Open();
-            bt.DataReceived += bt_DataReceived;
+            //bt.DataReceived += bt_DataReceived;
+
+            bt = new Bluetooth();
 
         }
         //Ogni volta che si ricevono dati da arduino
         private void bt_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            String s = bt.ReadLine();
+            //String s = bt.ReadLine();
 
-            disegna(s);
+            //disegna(s);
         }
 
         //Scala e disegna nel piano con asse y ribaltato
         private void disegnaPunto(Point p)
         {
 
-            Point ptW  = new Point();
+            Point ptW = new Point();
             ptW.X = p.X /** scala*/ + pDraw.Width / 2;
             ptW.Y = pDraw.Height - p.Y /** scala*/;
 
@@ -122,8 +125,10 @@ namespace Rover
         private void bStart_Click(object sender, EventArgs e)
         {
             //invio S quando viene premuto il tasto, TODO l'arudino capisce e starta
-            //bt.Write("S");
+            bt.inviaSeriale("ciao");
             /*bt.WriteLine("ciao"); */          //prova
+            if (bt.getTesto() != "")
+                textBox1.Text = bt.getTesto();
 
         }
 
