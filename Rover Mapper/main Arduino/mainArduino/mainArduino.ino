@@ -50,7 +50,7 @@ void trovaPercorsoMigliore()
 {
   if (ultra.getFront() < 13 && ultra.getFront() != - 1) 
   {
-    bussola.stopMotors()
+    bussola.stopMotors();
     bussola.routineRuotaDx(90);
   }
 //  if (ultra.getDx() == -1)
