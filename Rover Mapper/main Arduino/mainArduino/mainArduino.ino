@@ -40,10 +40,16 @@ void loop() {
      trovaPercorsoMigliore(); 
   }    
   */
-  bussola.checkRotation();
-  ultra.calcolaDistanze();
-  bussola.checkRotation();
-  trovaPercorsoMigliore(); 
+  if (bussola.stoRuotando())
+  {
+    bussola.checkRotation();
+  }
+  else
+  {
+   ultra.calcolaDistanze();
+   trovaPercorsoMigliore(); 
+  }
+
 }
 
 void trovaPercorsoMigliore() 
