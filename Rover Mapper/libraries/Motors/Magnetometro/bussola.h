@@ -80,12 +80,12 @@ public:
 		if (rotDx && ((getDegree() - angoloStart) >= gradiRot))
 		{	        
 			rotDx = false;
-			motori.avanti();
+			motori.motorsOff();
 		}
 		else if (rotSx && ((getDegree() + gradiRot) >= angoloStart))
 		{		    
 			rotSx = false;
-			motori.avanti();
+			motori.motorsOff();
 		}		
 	}
 };
