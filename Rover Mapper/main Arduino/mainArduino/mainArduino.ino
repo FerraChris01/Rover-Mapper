@@ -40,20 +40,26 @@ void loop() {
      trovaPercorsoMigliore(); 
   }    
   */
+  bussola.checkRotation();
+  ultra.calcolaDistanze();
+  bussola.checkRotation();
   trovaPercorsoMigliore(); 
 }
 
 void trovaPercorsoMigliore() 
 {
-  if (ultra.getFront() < 13 && ultra.getFront() != - 1) bussola.stopMotors();
- 
-  if (ultra.getDx() == -1)
-     bussola.routineRuotaDx(90);
-  else if (ultra.getFront() < 13 && ultra.getDx() != -1)
-    bussola.routineRuotaSx(180);
-  else if (ultra.getFront() < 13 && ultra.getSx() != -1)
-     bussola.routineRuotaDx(180); 
-  else if (ultra.getFront() < 13 && ultra.getDx() != -1)
-     bussola.routineRuotaSx(90);
+  if (ultra.getFront() < 13 && ultra.getFront() != - 1) 
+  {
+    bussola.stopMotors()
+    bussola.routineRuotaDx(90);
+  }
+//  if (ultra.getDx() == -1)
+ //    bussola.routineRuotaDx(90);
+ // else if (ultra.getFront() < 13 && ultra.getDx() != -1)
+ //   bussola.routineRuotaSx(180);
+ // else if (ultra.getFront() < 13 && ultra.getSx() != -1)
+//     bussola.routineRuotaDx(180); 
+ // else if (ultra.getFront() < 13 && ultra.getDx() != -1)
+ //    bussola.routineRuotaSx(90);
     
 }
