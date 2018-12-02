@@ -36,13 +36,9 @@ public:
 		}
 		delayMicroseconds(10);
 		for (int i = 0; i < 3; i++)
-			digitalWrite(porteT[i], LOW );		
-
-		for (int i = 0; i < 3; i++)
-			durate[i] = pulseIn(porteR[i], HIGH );
-		
-		for (int i = 0; i < 3; i++)
 		{
+			digitalWrite(porteT[i], LOW );	
+			durate[i] = pulseIn(porteR[i], HIGH );
 			if(durate[i] > 38000 )
 				risultati[i] = -1;
 			else
