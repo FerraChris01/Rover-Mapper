@@ -53,6 +53,8 @@ namespace Rover
 
             this.StartPosition = FormStartPosition.CenterScreen;
 
+            sD = new CStringDecoder("COM5", 9600); 
+
             map = new CMappa();
             scala = 10;
 
