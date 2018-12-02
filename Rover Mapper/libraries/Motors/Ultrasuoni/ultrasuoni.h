@@ -25,8 +25,8 @@ public:
 	}
 	void calcolaDistanze()
 	{
-		float porteT[3] = {2, 10, A0};
-		float porteR[3] = {6, 11, A1};
+		int porteT[3] = {2, 10, A0};
+		int porteR[3] = {6, 11, A1};
 		float durate[3];
 		float risultati[3];
 		for (int i = 0; i < 3; i++)
