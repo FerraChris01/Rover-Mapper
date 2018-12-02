@@ -33,10 +33,9 @@ public:
 			digitalWrite(porteT[i], LOW );
 		
 		for (int i = 0; i < 3; i++)
-		{
 			digitalWrite(porteT[i], HIGH );		
-			delayMicroseconds(10);
-		}
+
+		delayMicroseconds(10);
 		
 		for (int i = 0; i < 3; i++)
 			digitalWrite(porteT[i], LOW );	
