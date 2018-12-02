@@ -30,16 +30,18 @@ public:
 		float durate[3];
 		float risultati[3];
 		for (int i = 0; i < 3; i++)	
-		{
 			digitalWrite(porteT[i], LOW );
-			digitalWrite(porteT[i], HIGH );		
-			delayMicroseconds(10);
-		}		
-		for (int i = 0; i < 3; i++)
-			digitalWrite(porteT[i], LOW );	
 		
 		for (int i = 0; i < 3; i++)
+		{
+			digitalWrite(porteT[i], HIGH );		
+			delayMicroseconds(10);
+		}
+		
+		for (int i = 0; i < 3; i++)
+			digitalWrite(porteT[i], LOW );	
 			durate[i] = pulseIn(porteR[i], HIGH );
+		}
 		
 		for (int i = 0; i < 3; i++)
 		{
