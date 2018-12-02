@@ -24,47 +24,35 @@ public:
 		Serial.begin(9600);
 	}
 	void calcolaDistanze()
-	{	
-		dDx = dX(2, 6);		
-		dSx = dX(10, 11);
-		dF =  dXA(A0, A1);
-	}
-	float dX(int t, int e)
-	{		
-		float ris;
-		float durata = 0.0;
-		digitalWrite(t, LOW );
-		digitalWrite(t, HIGH );
+	{
+		float porteT[3] = {2, 10, A0};
+		float porteR[3] = {6, 11, A1};
+		float durate[3];
+		float risultati[3];
+		for (int i = 0; i < 3; i++)
+		{
+			digitalWrite(porteT[i], LOW );
+			digitalWrite(porteT[i], HIGH );		
+		}
 		delayMicroseconds(10);
-		digitalWrite(t, LOW );
- 
-		durata = pulseIn(e, HIGH );
- 
-		if(durata > 38000 )
-			ris = -1;
-		else
-			ris = 0.034 * durata / 2;
+		for (int i = 0; i < 3; i++)
+			digitalWrite(porteT[i], LOW );		
+
+		for (int i = 0; i < 3; i++)
+			durate[i] = pulseIn(porteR[i], HIGH );
 		
-		return ris;
+		for (int i = 0; i < 3; i++)
+		{
+			if(durate[i] > 38000 )
+				risultati[i] = -1;
+			else
+				risultati[i] = 0.034 * durate[i] / 2;
+		}
+		dDx = risultati[0];
+		dSx = risultati[1];
+		dF = risultati[2];	
+		
 	}
-	float dXA(int t, int e)
-	{		
-		float ris;
-		float durata = 0.0;
-		digitalWrite(t, LOW);
-		digitalWrite(t, HIGH);
-		delayMicroseconds(10);
-		digitalWrite(t, LOW);
- 
-		durata = pulseIn(e, HIGH);
- 
-		if(durata > 38000 )
-			ris = -1;
-		else
-			ris = 0.034 * durata / 2;
-		
-		return ris;
-	 }
 	
 	float testSpeed()
 	{
