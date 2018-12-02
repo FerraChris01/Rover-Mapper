@@ -14,7 +14,10 @@ namespace Rover
 
     class CStringDecoder : SerialPort
     {
-
+        //Attributi
+        public string riga { get; set; }
+        private string[] campi;
+        //Metodi
         private int calc(String val)
         {
             int dist = 0;
@@ -34,8 +37,7 @@ namespace Rover
             this.PortName = PortName;
             this.BaudRate = BaudRate;
         }
-        public string riga { get; set; }
-        private string[] campi;
+        
         public void leggiRiga()
         {
             riga = ReadLine();
