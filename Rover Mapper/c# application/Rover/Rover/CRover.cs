@@ -26,5 +26,12 @@ namespace Rover
 
         }
 
+        public void Avanti(int o)
+        {
+            X += (int)Math.Cos(o);
+            Y += (int)Math.Sin(o);
+            orientamento = o;
+        }
+
     }
 }
