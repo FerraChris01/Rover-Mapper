@@ -29,15 +29,12 @@ public:
 		int porteR[3] = {6, 11, A1};
 		float durate[3];
 		float risultati[3];
-		for (int i = 0; i < 3; i++)		
+		for (int i = 0; i < 3; i++)	
+		{
 			digitalWrite(porteT[i], LOW );
-		
-		for (int i = 0; i < 3; i++)
 			digitalWrite(porteT[i], HIGH );		
-		
-		for (int i = 0; i < 3; i++)
 			delayMicroseconds(10);
-		
+		}		
 		for (int i = 0; i < 3; i++)
 			digitalWrite(porteT[i], LOW );	
 		
