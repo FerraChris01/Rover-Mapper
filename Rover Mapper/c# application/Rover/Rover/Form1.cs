@@ -108,6 +108,7 @@ namespace Rover
             //if (bt.getTesto() != "")
                 //textBox1.Text = bt.getTesto();
 
+
         }
 
         private void button1_Click(object sender, EventArgs e)
