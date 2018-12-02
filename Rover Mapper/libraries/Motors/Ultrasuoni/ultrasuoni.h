@@ -65,8 +65,11 @@ public:
 		
 		return ris;
 	 }
-
 	
+	float testSpeed()
+	{
+		return dXA(A0, A1);
+	}	
 
 	float getFront()
 	{
