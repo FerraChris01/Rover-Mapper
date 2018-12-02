@@ -88,6 +88,10 @@ public:
 			motori.motorsOff();
 		}		
 	}
+	void testSpeed()
+	{
+		motori.ruotaDx();
+	}
 };
 
 
