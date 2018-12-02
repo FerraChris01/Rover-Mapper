@@ -18,13 +18,18 @@ public:
 
 	void sendData(float dDx, float dSx, int angolo) 
 	{
-			bt.print(String(dDx) + ";" + String(dSx) + ";" + String(angolo));
+			bt.println(String(dDx) + ";" + String(dSx) + ";" + String(angolo));
 	}	
 
 	void read() {
 		while (bt.available() > 0) {
 			Serial.println(bt.read());
 		}
+	}
+	
+	void testSpeed(float speedP)
+	{
+		bt.println(speedP);
 	}
 
 	//Invia le distanze dei 3 sensori su seriale
