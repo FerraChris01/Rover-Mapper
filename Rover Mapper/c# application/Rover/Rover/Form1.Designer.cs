@@ -53,9 +53,9 @@
             // pDraw
             // 
             this.pDraw.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pDraw.Location = new System.Drawing.Point(141, 25);
+            this.pDraw.Location = new System.Drawing.Point(141, 12);
             this.pDraw.Name = "pDraw";
-            this.pDraw.Size = new System.Drawing.Size(874, 632);
+            this.pDraw.Size = new System.Drawing.Size(874, 645);
             this.pDraw.TabIndex = 1;
             // 
             // button1
@@ -99,14 +99,14 @@
             // opzioniToolStripMenuItem
             // 
             this.opzioniToolStripMenuItem.Name = "opzioniToolStripMenuItem";
-            this.opzioniToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.opzioniToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.opzioniToolStripMenuItem.Text = "Settings";
-            this.opzioniToolStripMenuItem.Click += new System.EventHandler(this.Form2_Load);
+            this.opzioniToolStripMenuItem.Click += new System.EventHandler(this.opzioniToolStripMenuItem_Click);
             // 
             // esportaToolStripMenuItem
             // 
             this.esportaToolStripMenuItem.Name = "esportaToolStripMenuItem";
-            this.esportaToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.esportaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.esportaToolStripMenuItem.Text = "Export";
             // 
             // DEMO
@@ -123,7 +123,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1027, 660);
+            this.ClientSize = new System.Drawing.Size(1027, 669);
             this.Controls.Add(this.DEMO);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);

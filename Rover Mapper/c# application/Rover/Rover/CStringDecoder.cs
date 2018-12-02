@@ -34,11 +34,17 @@ namespace Rover
             this.PortName = PortName;
             this.BaudRate = BaudRate;
         }
-
+        public string riga { get; set; }
+        private string[] campi;
+        public void leggiRiga()
+        {
+            riga = ReadLine();
+            campi = riga.Split(';');
+        }
 
         public int getDistDx()
         {
-            return calc(ReadLine().Split(';')[0]);
+            return calc(campi[0]);
         }
 
         public int getDistDx(String strdaDecod)
@@ -48,7 +54,7 @@ namespace Rover
 
         public int getDistSx()
         {
-            return calc(ReadLine().Split(';')[1]);
+            return calc(campi[1]);
         }
 
         public int getDistSx(String strdaDecod)
@@ -58,7 +64,7 @@ namespace Rover
 
         public int getOrientamento()
         {
-            return calc(ReadLine().Split(';')[2]);
+            return calc(campi[2]);
         }
 
         public int getOrientamento(String strdaDecod)
@@ -72,24 +78,24 @@ namespace Rover
 }
 
 
-        //public void inviaSeriale(String s)
-        //{
-        //    sp.Write(s);
-        //}
+//public void inviaSeriale(String s)
+//{
+//    sp.Write(s);
+//}
 
-        //public String leggiSeriale()
-        //{
-        //    return sp.ReadLine();
-        //}
+//public String leggiSeriale()
+//{
+//    return sp.ReadLine();
+//}
 
-        //public String getTesto()
-        //{
-        //    return testo;
-        //}
+//public String getTesto()
+//{
+//    return testo;
+//}
 
 
-        //metodo che cerca nel testo il prossimo carattere a capo,
-        //se lo trova vuol dire che il numero finisce li
+//metodo che cerca nel testo il prossimo carattere a capo,
+//se lo trova vuol dire che il numero finisce li
 
 //        private int getNextNumber(int j)
 //        {

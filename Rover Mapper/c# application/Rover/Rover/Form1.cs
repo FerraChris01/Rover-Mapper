@@ -22,7 +22,9 @@ namespace Rover
 
         //Porta seriale al solo scopo di test (Broch la sostituirà con la lettura via bluetooth)
         //private SerialPort bt;
-        private CStringDecoder sD;
+        private CStringDecoder sD = null;
+
+        private String comPort = null;
 
         //Classe per la gestionde della mappa
         CMappa map;
@@ -53,29 +55,50 @@ namespace Rover
 
             map = new CMappa();
             scala = 10;
-            
+
             g = pDraw.CreateGraphics();
             pen = new Pen(Color.Red);
 
-            
-
-            sD = new CStringDecoder("COM5",9600);
-            sD.DataReceived += bt_DataReceived;
-
         }
+
+
         //Ogni volta che si ricevono dati da arduino
         private void bt_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            disegna(sD.getDistDx(), sD.getDistSx(), sD.getOrientamento());
+            sD.leggiRiga();
+
+            this.BeginInvoke((MethodInvoker)delegate ()
+            {
+                textBox1.Text = sD.ReadLine();
+                disegna(sD.getDistDx(), sD.getDistSx(), sD.getOrientamento());
+
+
+            });
+            //StreamWriter log = new StreamWriter("log.txt", true);
+
+            //log.WriteLine("riga"+sD.riga);
+            //log.Close();
+            //this.BeginInvoke((MethodInvoker)delegate ()
+            //{
+
+            //   
+            //});
+            //this.BeginInvoke((MethodInvoker)delegate ()
+            //{
+            //    textBox1.Text += "ciao";
+            //});
+
+
         }
 
         //Scala e disegna nel piano con asse y ribaltato
         private void disegnaPunto(Point p)
         {
 
+
             Point ptW = new Point();
             ptW.X = p.X * scala + pDraw.Width / 2;
-            ptW.Y = pDraw.Height/2 - p.Y /* * scala*/;
+            ptW.Y = pDraw.Height / 2 - p.Y /* * scala*/;
 
             drawPixel(ptW);
         }
@@ -83,7 +106,7 @@ namespace Rover
 
         private void disegna(int distDx, int distSx, int orientamento)
         {
-            
+
             map.add(distDx, distSx, orientamento); //Carattere 1 = dist da Dx - carattere 2 = dist da Sx - carattere 3 = angolo orienamento
             disegnaPunto(map.pDx.Last<Point>());
             disegnaPunto(map.pSx.Last<Point>());
@@ -105,9 +128,8 @@ namespace Rover
             //invio S quando viene premuto il tasto, TODO l'arudino capisce e starta
             //bt.inviaSeriale("ciao");
             /*bt.WriteLine("ciao"); */          //prova
-            //if (bt.getTesto() != "")
-                //textBox1.Text = bt.getTesto();
-
+                                                //if (bt.getTesto() != "")
+                                                //textBox1.Text = bt.getTesto();
 
         }
 
@@ -119,17 +141,36 @@ namespace Rover
 
         private void opzioniToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form settingsForm = new Form();
-            settingsForm.Show();
+            Form2 frm = new Form2(comPort);
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            DialogResult res = frm.ShowDialog();
+
+            if (res == DialogResult.OK)
+            {
+                comPort = frm.getPort();
+                openPort();
+            }
         }
-
-
-
-        private void Form2_Load(object sender, EventArgs e)
+        private void openPort()
         {
-            Form2 newForm = new Form2();
-            newForm.StartPosition = FormStartPosition.CenterScreen;
-            newForm.Show();
+            try
+            {
+                if (sD != null && sD.IsOpen) sD.Close();
+                {
+                    sD = new CStringDecoder(comPort, 9600);
+                    sD.DtrEnable = true;
+                    sD.Open();
+                    sD.DataReceived += bt_DataReceived;
+                }
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show("Error IO: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error COM: " + ex.Message);
+            }
         }
 
         private void DEMO_Click(object sender, EventArgs e)

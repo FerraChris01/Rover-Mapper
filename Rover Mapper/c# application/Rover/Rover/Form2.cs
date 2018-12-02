@@ -12,32 +12,48 @@ namespace Rover
 {
     public partial class Form2 : Form
     {
-        public Form2()
+        public string ReturnText { get; set; }
+        public Form2(String porta)
         {
             InitializeComponent();
-            this.Hide();
+            foreach (string s in System.IO.Ports.SerialPort.GetPortNames())
+            {
+                ports.Items.Add(s);
+                ports.SelectedItem = porta;
+            }
         }
-
-        private void Form2_Load(object sender, EventArgs e)
+        public String getPort()
         {
-            this.Hide();
-        }
-
-        private void Form1_Load(object sender, FormClosingEventArgs e)
-        {
-            this.Hide();
-            
+            return ReturnText;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            try
+            {
+                ReturnText = this.ports.SelectedItem.ToString();
+                //this.Visible = false;
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+
+            }
+            catch (System.NullReferenceException ex)
+            {
+                MessageBox.Show("You must select a COM port");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("You must select a COM port: " + ex.Message);
+            }
         }
 
-        private void Form2_Load_1(object sender, EventArgs e)
+        private void Form2_Load(object sender, EventArgs e)
         {
-
         }
 
+        private void ports_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ReturnText = this.ports.SelectedItem.ToString();
+        }
     }
 }

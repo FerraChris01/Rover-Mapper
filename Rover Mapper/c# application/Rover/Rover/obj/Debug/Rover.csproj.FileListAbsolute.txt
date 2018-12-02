@@ -71,3 +71,14 @@ C:\Users\tiabr\Desktop\clona\Rover Mapper\c# application\Rover\Rover\obj\Debug\R
 C:\Users\tiabr\Desktop\clona\Rover Mapper\c# application\Rover\Rover\bin\Debug\Rover.exe.config
 C:\Users\tiabr\Desktop\clona\Rover Mapper\c# application\Rover\Rover\bin\Debug\Rover.exe
 C:\Users\tiabr\Desktop\clona\Rover Mapper\c# application\Rover\Rover\bin\Debug\Rover.pdb
+C:\Users\Chris\Source\Repos\Rover-Mapper\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.csprojResolveAssemblyReference.cache
+C:\Users\Chris\Source\Repos\Rover-Mapper\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.Form1.resources
+C:\Users\Chris\Source\Repos\Rover-Mapper\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.Form2.resources
+C:\Users\Chris\Source\Repos\Rover-Mapper\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.Properties.Resources.resources
+C:\Users\Chris\Source\Repos\Rover-Mapper\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.csproj.GenerateResource.Cache
+C:\Users\Chris\Source\Repos\Rover-Mapper\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.csproj.CoreCompileInputs.cache
+C:\Users\Chris\Source\Repos\Rover-Mapper\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.exe
+C:\Users\Chris\Source\Repos\Rover-Mapper\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.pdb
+C:\Users\Chris\Source\Repos\Rover-Mapper\Rover Mapper\c# application\Rover\Rover\bin\Debug\Rover.exe.config
+C:\Users\Chris\Source\Repos\Rover-Mapper\Rover Mapper\c# application\Rover\Rover\bin\Debug\Rover.exe
+C:\Users\Chris\Source\Repos\Rover-Mapper\Rover Mapper\c# application\Rover\Rover\bin\Debug\Rover.pdb
