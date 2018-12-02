@@ -56,7 +56,21 @@ public:
 	
 	float testSpeed()
 	{
-		return dXA(A0, A1);
+		float ris;
+		float durata = 0.0;
+		digitalWrite(A0, LOW);
+		digitalWrite(A0, HIGH);
+		delayMicroseconds(10);
+		digitalWrite(A0, LOW);
+ 
+		durata = pulseIn(A1, HIGH);
+ 
+		if(durata > 38000 )
+			ris = -1;
+		else
+			ris = 0.034 * durata / 2;
+		
+		return ris;
 	}	
 
 	float getFront()
