@@ -1,4 +1,4 @@
-#include "SoftwareSerial.h"
+#include <SoftwareSerial.h>
 
 #define BT_TX_PIN 12		//da cambiare
 #define BT_RX_PIN 13
