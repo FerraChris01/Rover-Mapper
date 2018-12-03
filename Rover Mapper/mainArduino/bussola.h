@@ -32,7 +32,7 @@ class Bussola
       motori = Motors();     
 
       Serial.begin(9600);
-     // qmc.init();
+      qmc.init();
     }
     int getDegree()
     {
