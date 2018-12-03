@@ -37,7 +37,12 @@
             this.opzioniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.esportaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DEMO = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lOrientamento = new System.Windows.Forms.Label();
+            this.lDebug = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // bStart
@@ -53,9 +58,9 @@
             // pDraw
             // 
             this.pDraw.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pDraw.Location = new System.Drawing.Point(141, 12);
+            this.pDraw.Location = new System.Drawing.Point(214, 12);
             this.pDraw.Name = "pDraw";
-            this.pDraw.Size = new System.Drawing.Size(874, 645);
+            this.pDraw.Size = new System.Drawing.Size(801, 645);
             this.pDraw.TabIndex = 1;
             // 
             // button1
@@ -70,7 +75,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 138);
+            this.textBox1.Location = new System.Drawing.Point(28, 418);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 161);
@@ -99,19 +104,19 @@
             // opzioniToolStripMenuItem
             // 
             this.opzioniToolStripMenuItem.Name = "opzioniToolStripMenuItem";
-            this.opzioniToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.opzioniToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.opzioniToolStripMenuItem.Text = "Settings";
             this.opzioniToolStripMenuItem.Click += new System.EventHandler(this.opzioniToolStripMenuItem_Click);
             // 
             // esportaToolStripMenuItem
             // 
             this.esportaToolStripMenuItem.Name = "esportaToolStripMenuItem";
-            this.esportaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.esportaToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.esportaToolStripMenuItem.Text = "Export";
             // 
             // DEMO
             // 
-            this.DEMO.Location = new System.Drawing.Point(11, 331);
+            this.DEMO.Location = new System.Drawing.Point(28, 602);
             this.DEMO.Name = "DEMO";
             this.DEMO.Size = new System.Drawing.Size(100, 26);
             this.DEMO.TabIndex = 5;
@@ -119,11 +124,52 @@
             this.DEMO.UseVisualStyleBackColor = true;
             this.DEMO.Click += new System.EventHandler(this.DEMO_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(25, 123);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(50, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Compass";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // lOrientamento
+            // 
+            this.lOrientamento.AutoSize = true;
+            this.lOrientamento.Location = new System.Drawing.Point(135, 11);
+            this.lOrientamento.Name = "lOrientamento";
+            this.lOrientamento.Size = new System.Drawing.Size(0, 13);
+            this.lOrientamento.TabIndex = 7;
+            this.lOrientamento.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // lDebug
+            // 
+            this.lDebug.AutoSize = true;
+            this.lDebug.Location = new System.Drawing.Point(25, 384);
+            this.lDebug.Name = "lDebug";
+            this.lDebug.Size = new System.Drawing.Size(39, 13);
+            this.lDebug.TabIndex = 8;
+            this.lDebug.Text = "Debug";
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.lOrientamento);
+            this.panel1.Location = new System.Drawing.Point(28, 156);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(169, 216);
+            this.panel1.TabIndex = 9;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1027, 669);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lDebug);
             this.Controls.Add(this.DEMO);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
@@ -136,6 +182,8 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -152,6 +200,10 @@
         private System.Windows.Forms.ToolStripMenuItem opzioniToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem esportaToolStripMenuItem;
         private System.Windows.Forms.Button DEMO;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lOrientamento;
+        private System.Windows.Forms.Label lDebug;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

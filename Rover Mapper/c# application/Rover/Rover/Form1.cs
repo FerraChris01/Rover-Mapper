@@ -72,6 +72,7 @@ namespace Rover
             this.BeginInvoke((MethodInvoker)delegate ()
             {
                 textBox1.Text = sD.ReadLine();
+                lOrientamento.Text = sD.getOrientamento().ToString() + "°";
                 disegna(sD.getDistDx(), sD.getDistSx(), sD.getOrientamento());
 
 
@@ -108,6 +109,8 @@ namespace Rover
 
         private void disegna(int distDx, int distSx, int orientamento)
         {
+
+            
 
             map.add(distDx, distSx, orientamento); //Carattere 1 = dist da Dx - carattere 2 = dist da Sx - carattere 3 = angolo orienamento
             disegnaPunto(map.pDx.Last<Point>());
@@ -182,12 +185,28 @@ namespace Rover
             while (!f.EndOfStream)
             {
                 riga = f.ReadLine();
+                lOrientamento.Text = sD.getOrientamento(riga).ToString() + "°";
                 disegna(sD.getDistDx(riga), sD.getDistSx(riga), sD.getOrientamento(riga));
             }
             f.Close();
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

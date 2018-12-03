@@ -56,6 +56,8 @@ namespace Rover
             pDx.Add(new Point((int)xDx,(int)yDx));
             pSx.Add(new Point((int)xSx, (int)ySx));
 
+           
+            
             //I CALCOLI IN QUESTO METODO VANNO FATTI CONSIDERANDO IL PIANO TRADIZIONALE (Il form si occuperà di invertire la y)
 
 
