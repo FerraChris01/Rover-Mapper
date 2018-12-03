@@ -99,7 +99,7 @@ namespace Rover
 
 
             Point ptW = new Point();
-            ptW.X = p.X * scala + pDraw.Width / 2;
+            ptW.X = p.X /** scala*/ + pDraw.Width / 2;
             ptW.Y = pDraw.Height / 2 - p.Y /* * scala*/;
 
             drawPixel(ptW);

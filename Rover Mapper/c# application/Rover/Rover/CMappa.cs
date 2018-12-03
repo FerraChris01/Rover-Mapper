@@ -45,17 +45,24 @@ namespace Rover
         {
 
             //Ricevo i dati dal bluetooth
+            rover.calcSpostamento(orientamento);
+            float xDx = rover.X + (float)Math.Cos((double)rover.getRadianti(orientamento + 90)) * distanzaDx;
+            float yDx = rover.Y + (float)Math.Sin((double)rover.getRadianti(orientamento + 90)) * distanzaDx;
+
+            float xSx = rover.X + (float)Math.Cos((double)rover.getRadianti(orientamento - 90)) * distanzaSx;
+            float ySx = rover.Y + (float)Math.Sin((double)rover.getRadianti(orientamento - 90)) * distanzaSx;
 
 
+            pDx.Add(new Point((int)xDx,(int)yDx));
+            pSx.Add(new Point((int)xSx, (int)ySx));
 
-            
             //I CALCOLI IN QUESTO METODO VANNO FATTI CONSIDERANDO IL PIANO TRADIZIONALE (Il form si occuperà di invertire la y)
 
 
             //if (orientamento == SUD)
-            pDx.Add(new Point(distanzaDx, rover.Y));
-            pSx.Add(new Point((distanzaDx + distanzaSx), rover.Y));
-            rover.Y--;//L'ordinata viene decrementata, difatti il rover si sposta verso il basso
+            //pDx.Add(new Point(distanzaDx, rover.Y));
+            //pSx.Add(new Point((distanzaDx + distanzaSx), rover.Y));
+            //rover.Y--;//L'ordinata viene decrementata, difatti il rover si sposta verso il basso
 
             //else if (orientamento == NORD)   
             //pDx.Add(new Point(distanzaDx, rover.Y));
