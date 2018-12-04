@@ -68,12 +68,14 @@ namespace Rover
         private void bt_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             sD.leggiRiga();
+            
 
             this.BeginInvoke((MethodInvoker)delegate ()
             {
                 textBox1.Text = sD.ReadLine();
                 lOrientamento.Text = sD.getOrientamento().ToString() + "°";
                 disegna(sD.getDistDx(), sD.getDistSx(), sD.getOrientamento());
+                pictureBox1.Image = Compass.DrawCompass(sD.getOrientamento(), 0, 80, 0, 80, pictureBox1.Size);
 
 
             });

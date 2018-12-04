@@ -40,9 +40,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lOrientamento = new System.Windows.Forms.Label();
             this.lDebug = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // bStart
@@ -137,7 +137,7 @@
             // lOrientamento
             // 
             this.lOrientamento.AutoSize = true;
-            this.lOrientamento.Location = new System.Drawing.Point(135, 11);
+            this.lOrientamento.Location = new System.Drawing.Point(180, 123);
             this.lOrientamento.Name = "lOrientamento";
             this.lOrientamento.Size = new System.Drawing.Size(0, 13);
             this.lOrientamento.TabIndex = 7;
@@ -152,22 +152,21 @@
             this.lDebug.TabIndex = 8;
             this.lDebug.Text = "Debug";
             // 
-            // panel1
+            // pictureBox1
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.lOrientamento);
-            this.panel1.Location = new System.Drawing.Point(28, 156);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(169, 216);
-            this.panel1.TabIndex = 9;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            this.pictureBox1.Location = new System.Drawing.Point(28, 157);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(152, 152);
+            this.pictureBox1.TabIndex = 9;
+            this.pictureBox1.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1027, 669);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.lOrientamento);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lDebug);
             this.Controls.Add(this.DEMO);
@@ -182,8 +181,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -203,7 +201,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lOrientamento;
         private System.Windows.Forms.Label lDebug;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
