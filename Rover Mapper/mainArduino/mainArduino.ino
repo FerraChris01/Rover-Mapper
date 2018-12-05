@@ -3,7 +3,7 @@
 
 #include "bussola.h"
 
-#include "ultrasuoni.h" 
+#include "ultrasuoni.h"
 
 Bluetooth bt;
 
@@ -13,63 +13,70 @@ Bussola* bussola;
 
 int direzioneGradi;
 
-void setup() { 
-  Serial.begin(9600);  
-  Serial.println("STARTED SERIAL");
-//  bt = Bluetooth();
-//  Serial.println("STARTED BT");
+int tStart = 0;
+int tFine = 0;
+
+int ledG = A2;
+int ledR = A3;
+
+#define k 50
+
+
+void setup() {
+  Serial.begin(9600);
   bussola =  new Bussola();
-//  Serial.println("STARTED BUSS");
-//  ultra = Ultrasuoni();
-//  Serial.println("STARTED US");
   direzioneGradi = bussola->getDegree();
-  Serial.println("GRADI: "+String(direzioneGradi));
   bussola->avanti();
   ultra.calcolaDistanze();
-  Serial.println("END SETUP");
-  
-}
+  pinMode(ledR, OUTPUT);
+  pinMode(ledG, OUTPUT);
+  digitalWrite(ledR, LOW);
+  digitalWrite(ledG, LOW);
 
-void loop() { 
-  if (bussola->stoRuotando())                //il numero di distanze calcolate varia a seconda della velocità (del moto o angolare)
-  { 
-     bussola->checkRotation();
-     ultra.calcolaDistanze();     
-     bussola->checkRotation();
-     bt.sendData(ultra.getDx(), ultra.getSx(), bussola->getDegree());
-     bussola->checkRotation();
-     direzioneGradi = bussola->getDegree();
-  }  
-  else
+}
+void loop() {
+  ultra.calcolaDistanze();
+  bt.sendData(ultra.getDx(), ultra.getSx(), bussola->getDegree());
+  if (bussola->stoRuotando())
   {
-    ultra.calcolaDistanze(); 
-     //bt.sendData(ultra.getDx(), ultra.getSx(), bussola.getDegree());
-     Serial.println("Gradi: " + String(bussola->getDegree()));
-     Serial.println(ultra.getDx());
-     Serial.println(ultra.getSx());
-     Serial.println(ultra.getFront());
-     Serial.println("-------------------");
-     //bussola.straighten();
-     //trovaPercorsoMigliore(); 
+    tFine = millis();
+    if (tFine - tStart >= 1000)
+    {
+      digitalWrite(ledG, HIGH);
+      digitalWrite(ledR, LOW);
+      bussola->rotazioneFinita();
+    }
+               
   }    
-  delay(500);
-
-}
-
-void trovaPercorsoMigliore() 
-{
-  if (ultra.getFront() < 13 && ultra.getFront() != - 1) 
-  {
-    bussola->stopMotors();
-    bussola->routineRuotaDx(90);
+  else
+  { 
+          digitalWrite(ledG, LOW);
+      digitalWrite(ledR, HIGH);
+    frenaSeNecessario();
+    trovaPercorsoMigliore();
   }
-//  if (ultra.getDx() == -1)
- //    bussola.routineRuotaDx(90);
- // else if (ultra.getFront() < 13 && ultra.getDx() != -1)
- //   bussola.routineRuotaSx(180);
- // else if (ultra.getFront() < 13 && ultra.getSx() != -1)
-//     bussola.routineRuotaDx(180); 
- // else if (ultra.getFront() < 13 && ultra.getDx() != -1)
- //    bussola.routineRuotaSx(90);
-    
+}
+void frenaSeNecessario()
+{
+    if (ultra.getFront() < (k / 2) && ultra.getFront() != -1)
+    {
+      bussola->stopMotors();  
+      bussola->routineRuotaDx();
+    }
+}
+void trovaPercorsoMigliore()
+{
+  if (ultra.getDx() > k || ultra.getDx() == -1)
+  {
+     bussola->routineRuotaDx();
+     tStart = millis();
+  }    
+  else if (ultra.getSx() > k || ultra.getSx() == -1)
+  {
+     bussola->routineRuotaSx();  
+     tStart = millis();      
+  }   
+  else if ((ultra.getFront() < (k / 2) && ultra.getFront() != -1) && ultra.getDx() < (k/2) && ultra.getSx() < (k/2))
+     bussola->stopMotors();
+
 }

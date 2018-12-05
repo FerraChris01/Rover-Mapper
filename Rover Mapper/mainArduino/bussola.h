@@ -63,17 +63,17 @@ class Bussola
     {
       motori.motorsOff();
     }
-    void routineRuotaDx(int gradiP)
+    void routineRuotaDx()    //(int gradiP)
     {
-      gradiRot = gradiP;
-      angoloStart = getDegree();
+//      gradiRot = gradiP;
+//      angoloStart = getDegree();
       rotDx = true;
       motori.ruotaDx();
     }
-    void routineRuotaSx(int gradiP)
+    void routineRuotaSx()
     {
-      gradiRot = gradiP;
-      angoloStart = getDegree();
+      //gradiRot = gradiP;
+      //angoloStart = getDegree();
       rotSx = true;
       motori.ruotaSx();
     }
@@ -81,6 +81,12 @@ class Bussola
     {
       if (rotDx || rotSx) return true;
       else return false;
+    }
+    void rotazioneFinita()
+    {
+      rotDx = false;
+      rotSx = false;
+      motori.avanti();
     }
     void checkRotation()
     {
@@ -100,5 +106,3 @@ class Bussola
       motori.ruotaDx();
     }
 };
-
-
