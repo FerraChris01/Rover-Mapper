@@ -22,11 +22,9 @@ class Bussola
     {
       rotDx = false;
       rotSx = false;
-      angoloStart = 0;
-      gradiRot = 0;
-	  Wire.begin();
+      gradiArrivo = 0;
+	    Wire.begin();
       
-      //qmc = MechaQMC5883(); 
       qmc.setMode(Mode_Continuous, ODR_200Hz, RNG_8G, OSR_512);
       
       motori = Motors();     
@@ -63,17 +61,15 @@ class Bussola
     {
       motori.motorsOff();
     }
-    void routineRuotaDx()    //(int gradiP)
+    void ruotaOrario(int gradiP)   
     {
-//      gradiRot = gradiP;
-//      angoloStart = getDegree();
+      gradiArrivo = (getDegree() + gradiP) % 360;
       rotDx = true;
       motori.ruotaDx();
     }
-    void routineRuotaSx()
+    void ruotaAntiorario()
     {
-      //gradiRot = gradiP;
-      //angoloStart = getDegree();
+      gradiArrivo = (getDegree() - gradiP + 360) % 360;
       rotSx = true;
       motori.ruotaSx();
     }

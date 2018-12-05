@@ -58,10 +58,8 @@ void loop() {
 void frenaSeNecessario()
 {
     if (ultra.getFront() < (k / 2) && ultra.getFront() != -1)
-    {
       bussola->stopMotors();  
-      bussola->routineRuotaDx();
-    }
+
 }
 void trovaPercorsoMigliore()
 {
@@ -78,16 +76,22 @@ void trovaPercorsoMigliore()
 //  else if ((ultra.getFront() < (k / 2) && ultra.getFront() != -1) && ultra.getDx() < (k/2) && ultra.getSx() < (k/2))
 //     bussola->stopMotors();
 
-if(ultra.getFront()<(k/2) && ultra.getFront() != -1){
-  if ((ultra.getSx() > ultra.getDx()) || ultra.getSx() == -1)
+if(ultra.getFront()<(k/2) && ultra.getFront() != -1)
+{
+  if (ultra.getDx() < k/2 && ultra.getSx() < k/2 && ultra.getFront() < k/2)
+     bussola->stopMotors();
+  else if((ultra.getDx() > ultra.getSx()) || ultra.getDx() == -1)
   {
-     bussola->routineRuotaSx();  
+    bussola->ruotaOrario();
+    tStart = millis();
+  }
+  else if ((ultra.getSx() > ultra.getDx()) || ultra.getSx() == -1)
+  {
+     bussola->ruotaAntiorario();  
      tStart = millis();      
   }   
-  else if((ultra.getDx() > ultra.getSx()) || ultra.getDx() == -1){
-    bussola->routineRuotaSx();
-    tStart=millis();
-  }
+
+  
 }
 
 }
