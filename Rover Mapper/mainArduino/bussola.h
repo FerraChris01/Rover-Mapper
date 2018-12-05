@@ -15,7 +15,7 @@ class Bussola
     bool rotSx;
     int angoloStart;
     int gradiRot;
-
+    bool particolare=false;
 
   public:
     Bussola()
@@ -48,7 +48,114 @@ class Bussola
       //else if (direzione < getDegree())
       // portati a sinistra
 
+
+      
+      //@Author Saccani
+      //Controlla se i gradi effettivi sono compresi tra direzione+-5
+      if(!versoCorretto(direzione)){
+        //Ha sforato, quindi bisogna correggere l'andatura
+        
+        do{
+
+          
+          if(particolare){
+
+            //Sono tra 0 e 5?
+            if((direzione<=5 && direzione>=0) || (direzione>=355 && direzione<=360)){
+              //Sono tra 180 e 360? Mi conviene fare orario
+              if(getDegree()>=180){
+                motori.spinOrario();
+              }else{
+                //Sono tra 0 e 179, faccio l'antiorario
+                motori.spinAntiorario();
+              }
+            }
+          }else{
+            //Normale
+            if(getDegree()>getSomma(direzione,5)){
+            //Devo girare a sx
+            motori.spinAntiorario();
+            
+          }else{
+            //Devo girare a dx
+           motori.spinOrario();
+           
+          }
+          }
+
+          
+          
+
+        }while(!versoCorretto(direzione));//Se sono ancora sforato, mi raddrizzo
+
+        //Mi sono raddrizzato, quindi vado avanti
+        motori.avanti();
+      }
+
+      
+      particolare=false;
+
     }
+    
+    private boolean versoCorretto(int direzione){
+      //@Author Saccani
+      //Dice se sono nella direzione giusta
+      int gradiEffettivi = getDegree();//350
+
+
+      //Caso Particolare???  
+      //Sono tra 0-5 o 355-360?
+      if((direzione<=5 && direzione>=0) || (direzione>=355 && direzione<=360)){
+        if(gradiEffettivi>=getSottrazione(direzione,5)){
+          return true;
+        }else{
+          if(gradiEffettivi<=getSomma(direzione,5)){
+            return true;
+          }else{
+            particolare=true;
+            return false;
+          }
+        }
+      }else if(gradiEffettivi<=getSomma(direzione,5) && gradiEffettivi>=getSottrazione(direzione,5)){ //Sono quindi in una situazione normale
+          return true;
+        }else{
+          return false;
+        }
+        
+    }
+
+    private int correggi(int gradi){
+      //@Author Saccani
+      //Tipo: 350 ---> diventa 10
+      return 360-gradi;
+    }
+
+    private int getSottrazione(int direzione, int diTot){
+      //@Author Saccani
+      int ris=direzione-diTot;
+
+      if(ris<0){
+        //Sono andato indietro di 0 gradi, trovo il corrispettivo 
+        //Esempio:  direzione=0   diTot=5 ---> ris=-5   -->correggo in 355
+        ris=360+ris;
+      }
+      return ris;
+    }
+
+    private int getSomma(int direzione, int diTot){
+      //@Author Saccani
+      int ris=direzione+diTot;
+
+      if(ris>360){
+        //Ho superato i 360, trovo il corrispettivo 
+        //Esempio:  direzione=360   diTot=5 ---> ris=365   -->correggo in 5
+        ris=ris-360;
+      }
+      return ris;
+    }
+
+
+    
     void avanti()
     {
       motori.avanti();
