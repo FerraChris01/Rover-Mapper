@@ -44,17 +44,27 @@ class Motors
 		digitalWrite(indietroDx, HIGH);
 		digitalWrite(indietroSx, HIGH);
 	}
-	void ruotaSx()        
+	void spinOrario()        
 	{
 		motorsOff();
 		digitalWrite(avantiDx, HIGH);
 		digitalWrite(indietroSx, HIGH);
 	}
-	void ruotaDx()       
+	void spinAntiorario()       
 	{
 		motorsOff();
 		digitalWrite(avantiSx, HIGH);
 		digitalWrite(indietroDx, HIGH);
+	}
+	void ruotaDx()
+	{
+		motorsOff();
+		digitalWrite(avantiSx, HIGH);
+	}
+	void ruotaSx()
+	{
+		motorsOff();
+		digitalWrite(avantiDx, HIGH);
 	}
     
 };
