@@ -65,13 +65,13 @@ class Bussola
     {
       gradiArrivo = (getDegree() + gradiP) % 360;
       rotDx = true;
-      motori.ruotaDx();
+      motori.spinOrario();
     }
     void ruotaAntiorario()
     {
       gradiArrivo = (getDegree() - gradiP + 360) % 360;
       rotSx = true;
-      motori.ruotaSx();
+      motori.spinAntiorario();
     }
     bool stoRuotando()
     {
@@ -99,6 +99,6 @@ class Bussola
     }
     void testSpeed()
     {
-      motori.ruotaDx();
+      motori.spinOrario();
     }
 };
