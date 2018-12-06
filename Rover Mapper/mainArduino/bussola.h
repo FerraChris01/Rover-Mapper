@@ -208,4 +208,42 @@ class Bussola
     {
       motori.spinOrario();
     }
+	//@author mattia broch
+	//metodo che dato un angolo iniziale e finale ritorna una stringa con ANTI o ORARIO per indicare la rotazione
+	//e l'angolo alfa di rotazione
+    string setDirezione(int start,int final){
+	    int ris1=ris1(int start,int final);
+	    int ris2=ris2(int start,int final);
+	    
+	    if(ris1<ris2){
+		    if(ris1>0){
+			    return "anti"+ris1;
+		    }
+	   	    else return "orario"+abs(ris1);
+	    else{
+		    if(ris2>0){
+			    return "orario"+ris1;
+		    }
+	   	    else return "anti"+abs(ris2);		    
+	    }
+		    
+    }
+	
+	int ris1(int start,int final){//se valore positivo gira in senso ANTIORARIO, se negativo in senso ORARIO
+		return start-final;
+	}
+	
+	int ris2(int start,int final){//se valore positivo gira in senso ORARIO, se negativo in senso ANTIORARIO
+		int ris=0;
+		if(start>fine){
+			start-=360;
+			ris=final-start;
+		}
+		else{
+			final-=360;
+			ris=final-start;
+		}
+			
+	}
+	
 };
