@@ -41,6 +41,8 @@ class Bussola
 
       return heading;
     }
+
+    
     void straighten(int direzione)
     {
       //if (direzione > getDegree())
@@ -58,31 +60,39 @@ class Bussola
         do{
 
           
-          if(particolare){
+          //if(particolare){
 
             //Sono tra 0 e 5?
-            if((direzione<=5 && direzione>=0) || (direzione>=355 && direzione<=360)){
+           // if((direzione<=5 && direzione>=0) || (direzione>=355 && direzione<=360)){
               //Sono tra 180 e 360? Mi conviene fare orario
-              if(getDegree()>=180){
+             // if(getDegree()>=180){
                 motori.spinOrario();
-              }else{
+              //}else{
                 //Sono tra 0 e 179, faccio l'antiorario
-                motori.spinAntiorario();
-              }
-            }
-          }else{
+              //  motori.spinAntiorario();
+              //}
+           // }
+          //}else{
             //Normale
-            if(getDegree()>getSomma(direzione,5)){
+           // if(getDegree()>getSomma(direzione,5)){
             //Devo girare a sx
-            motori.spinAntiorario();
+           // motori.spinAntiorario();
             
-          }else{
+          //}else{
             //Devo girare a dx
-           motori.spinOrario();
+          // motori.spinOrario();
            
-          }
-          }
+          //}
+          //}
 
+          //Vedo dove devo andare per raddrizzarmi
+         String ris = setDirezione(getDegree(),direzione);
+         //Effettuo la correzione
+         if(ris=="orario"){
+          motori.ruotaDx();
+         }else{
+          motori.ruotaSx();
+         }
           
           
 
