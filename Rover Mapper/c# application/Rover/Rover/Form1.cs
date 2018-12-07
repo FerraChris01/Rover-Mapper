@@ -103,20 +103,20 @@ namespace Rover
         //Scala e disegna nel piano con asse y ribaltato
         private void disegnaPunto(Point p)
         {
-
-
-            Point ptW = new Point();
-            ptW.X = p.X /** scala*/ + pDraw.Width / 2;
-            ptW.Y = pDraw.Height / 2 - p.Y /* * scala*/;
-
-            drawPixel(gMap, ptW);
+            drawPixel(gMap, trasla(pDraw, p));
         }
 
+        public Point trasla(Panel panel, Point p) {
+
+            Point ptW = new Point();
+            ptW.X = p.X /** scala*/ + panel.Width / 2;
+            ptW.Y = panel.Height / 2 - p.Y /* * scala*/;
+
+            return ptW;
+        }
 
         private void disegna(int distDx, int distSx, int orientamento)
         {
-
-            
 
             map.add(distDx, distSx, orientamento); //Carattere 1 = dist da Dx - carattere 2 = dist da Sx - carattere 3 = angolo orienamento
             disegnaPunto(map.pDx.Last<Point>());
@@ -124,13 +124,9 @@ namespace Rover
 
             bussola.CalcolaPunto(orientamento);
             Point center = new Point(panel1.Width / 2, panel1.Height / 2);
-            Point p = bussola.p;
-
-            Point ptW = new Point();
-            ptW.X = p.X /** scala*/ + panel1.Width / 2;
-            ptW.Y = panel1.Height / 2 - p.Y /* * scala*/;
+            Point compassPoint = trasla(panel1, bussola.p);
             
-            gComp.DrawLine(pen, center, ptW);
+            gComp.DrawLine(pen, center, compassPoint);
             drawPixel(gComp, center);
 
             //ROBA PER TESTARE IL BLUETOOTH....
