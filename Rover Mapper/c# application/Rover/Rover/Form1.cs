@@ -23,7 +23,7 @@ namespace Rover
         //Porta seriale al solo scopo di test (Broch la sostituirà con la lettura via bluetooth)
         //private SerialPort bt;
         private CStringDecoder sD = null;
-
+        
         private String comPort = null;
 
         //Classe per la gestionde della mappa
@@ -31,16 +31,18 @@ namespace Rover
 
         //Valore di scala per la rappresentazione dei punti
         int scala;
-
+        //Creazione Bussola
+        Compass bussola;
 
         //Drawing class
-        Graphics g;
+        Graphics gMap;
+        Graphics gComp;
         Pen pen;
         Brush b = (Brush)Brushes.Black;
 
         //Metodi
         //Utilizzare questo metodo per disegnare un punto
-        private void drawPixel(Point p)
+        private void drawPixel(Graphics g, Point p)
         {
             g.FillRectangle(b, p.X, p.Y, 2, 2);
         }
@@ -58,8 +60,11 @@ namespace Rover
             map = new CMappa();
             scala = 10;
 
-            g = pDraw.CreateGraphics();
+            gMap = pDraw.CreateGraphics();
+            gComp = panel1.CreateGraphics();
             pen = new Pen(Color.Red);
+
+            bussola = new Compass();
 
         }
 
@@ -75,7 +80,6 @@ namespace Rover
                 textBox1.Text = sD.ReadLine();
                 lOrientamento.Text = sD.getOrientamento().ToString() + "°";
                 disegna(sD.getDistDx(), sD.getDistSx(), sD.getOrientamento());
-                pictureBox1.Image = Compass.DrawCompass(sD.getOrientamento(), 0, 80, 0, 80, pictureBox1.Size);
 
 
             });
@@ -105,7 +109,7 @@ namespace Rover
             ptW.X = p.X /** scala*/ + pDraw.Width / 2;
             ptW.Y = pDraw.Height / 2 - p.Y /* * scala*/;
 
-            drawPixel(ptW);
+            drawPixel(gMap, ptW);
         }
 
 
@@ -117,6 +121,17 @@ namespace Rover
             map.add(distDx, distSx, orientamento); //Carattere 1 = dist da Dx - carattere 2 = dist da Sx - carattere 3 = angolo orienamento
             disegnaPunto(map.pDx.Last<Point>());
             disegnaPunto(map.pSx.Last<Point>());
+
+            bussola.CalcolaPunto(orientamento);
+            Point center = new Point(panel1.Width / 2, panel1.Height / 2);
+            Point p = bussola.p;
+
+            Point ptW = new Point();
+            ptW.X = p.X /** scala*/ + panel1.Width / 2;
+            ptW.Y = panel1.Height / 2 - p.Y /* * scala*/;
+            
+            gComp.DrawLine(pen, center, ptW);
+            drawPixel(gComp, center);
 
             //ROBA PER TESTARE IL BLUETOOTH....
             //this.BeginInvoke((MethodInvoker)delegate ()
