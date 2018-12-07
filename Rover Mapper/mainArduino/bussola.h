@@ -49,7 +49,7 @@ class Bussola
         //Ha sforato, quindi bisogna correggere l'andatura
 
           //Vedo dove devo andare per raddrizzarmi
-          String ris = setDirezione(getDegree(), direzione);
+          String ris = getDirezioneDaFare(getDegree(), direzione);
         do {
 
 
@@ -76,7 +76,7 @@ class Bussola
         } while (!versoCorretto(direzione)); //Se sono ancora sforato, mi raddrizzo
 
         //Mi sono raddrizzato, quindi vado avanti
-        rotazione = false;
+        //rotazione = false;
         motori.avanti();
       }
 
@@ -182,6 +182,60 @@ class Bussola
     {
       motori.spinOrario();
     }
+
+    //se ritorna 1 = orario altrimenti se ritorna 2 = antiorario
+    public int getDirezioneDaFare(int doveSonoIo, int doveDevoArrivare){
+     int attualeQuad =  getQuadrante(doveSonoIo);
+     int arrivoQuad =  getQuadrante(doveDevoArrivare);
+    int ris=-1;
+    
+     if(attualeQuad == arrivoQuad){
+      //caso semplice
+      if(doveSonoIo<doveDevoArrivare){
+        //orario
+        //Esempio:
+        //IO:340 ---> Arr:358  Ris=Orario
+        //IO;350 ---> Arr: 275 ris Antiorario
+        ris=1;
+      }else{
+        ris= 2;
+      }
+     }else{
+      //Caso in cui i gradi sono in quadranti differenti
+
+      
+      if(attualeQuad==1 && arrivoQuad==4){
+        //Sono nel 1 e devo andare nel 4  ---> Anti
+        ris= 2;
+      }else if(attualeQuad==1 && arrivoQuad==4){
+        //Sono nel 4 e devo andare nel 1 ---> Orario
+        ris= 1;
+        
+      }else if(attualeQuad>arrivoQuad){//Casi Semplici e generici
+        ris= 2;
+      }else{
+        ris= 1;
+      }
+     }
+     gradiToMove=abs(doveSonoIo-doveDevoArrivare);
+     return ris;
+    }
+
+    public int getQuadrante(int gradi){
+      if(gradi>=0 && gradi<=90){
+        return 1;
+      }else if(gradi>=91 && gradi<=180){
+        return 2;
+      }else if(gradi>=181 && gradi<=270){
+        return 3;
+      }else if(gradi>=271 && gradi<=360){
+        return 4;
+      }
+    }
+
+
+
+    
     //@author mattia broch
     //metodo che dato un angolo iniziale e finale ritorna una stringa con ANTI o ORARIO per indicare la rotazione
     //e l'angolo alfa di rotazione
