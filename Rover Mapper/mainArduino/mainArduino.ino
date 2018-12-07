@@ -37,61 +37,36 @@ void setup() {
 void loop() {
   ultra.calcolaDistanze();
   bt.sendData(ultra.getDx(), ultra.getSx(), bussola->getDegree());
-  if (bussola->stoRuotando()==true)
-  {
-    tFine = millis();
-    if (tFine - tStart >= 1000)
-    {
-      digitalWrite(ledG, HIGH);
-      digitalWrite(ledR, LOW);
-      bussola->rotazioneFinita();
-    }               
-  }    
-  else
-  { 
-      digitalWrite(ledG, LOW);
-      digitalWrite(ledR, HIGH);
-    frenaSeNecessario();
-    trovaPercorsoMigliore();
-  }
+  
+  bussola->straighten(90);
+  Serial.println(bussola->getDegree());
+
 }
 void frenaSeNecessario()
 {
-    if (ultra.getFront() < (k / 2) && ultra.getFront() != -1)
-      bussola->stopMotors();  
+  if (ultra.getFront() < (k / 2) && ultra.getFront() != -1)
+    bussola->stopMotors();
 
 }
 void trovaPercorsoMigliore()
 {
-//  if (ultra.getDx() > k || ultra.getDx() == -1)
-//  {
-//     bussola->routineRuotaDx();
-//     tStart = millis();
-//  }    
-//  else if (ultra.getSx() > k || ultra.getSx() == -1)
-//  {
-//     bussola->routineRuotaSx();  
-//     tStart = millis();      
-//  }   
-//  else if ((ultra.getFront() < (k / 2) && ultra.getFront() != -1) && ultra.getDx() < (k/2) && ultra.getSx() < (k/2))
-//     bussola->stopMotors();
 
-if(ultra.getFront()<(k/2) && ultra.getFront() != -1)
-{
-  if (ultra.getDx() < k/2 && ultra.getSx() < k/2 && ultra.getFront() < k/2)
-     bussola->stopMotors();
-  else if((ultra.getDx() > ultra.getSx()) || ultra.getDx() == -1)
+  if (ultra.getFront() < (k / 2) && ultra.getFront() != -1)
   {
-    bussola->ruotaOrario();
-    tStart = millis();
+    if (ultra.getDx() < k / 2 && ultra.getSx() < k / 2 && ultra.getFront() < k / 2)
+      bussola->stopMotors();
+    else if ((ultra.getDx() > ultra.getSx()) || ultra.getDx() == -1)
+    {
+      bussola->ruotaOrario(90);
+      tStart = millis();
+    }
+    else if ((ultra.getSx() > ultra.getDx()) || ultra.getSx() == -1)
+    {
+      bussola->ruotaAntiorario(180);
+      tStart = millis();
+    }
+
+
   }
-  else if ((ultra.getSx() > ultra.getDx()) || ultra.getSx() == -1)
-  {
-     bussola->ruotaAntiorario();  
-     tStart = millis();      
-  }   
-
-  
-}
 
 }
