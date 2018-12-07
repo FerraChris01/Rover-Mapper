@@ -78,7 +78,6 @@ namespace Rover
             this.BeginInvoke((MethodInvoker)delegate ()
             {
                 textBox1.Text = sD.ReadLine();
-                lOrientamento.Text = sD.getOrientamento().ToString() + "°";
                 disegna(sD.getDistDx(), sD.getDistSx(), sD.getOrientamento());
 
 
@@ -125,7 +124,10 @@ namespace Rover
             bussola.CalcolaPunto(orientamento);
             Point center = new Point(panel1.Width / 2, panel1.Height / 2);
             Point compassPoint = trasla(panel1, bussola.p);
-            
+
+            //Aggiorna il grado della bussola 
+            lOrientamento.Text = orientamento.ToString() + "°";
+
             gComp.DrawLine(pen, center, compassPoint);
             drawPixel(gComp, center);
 
