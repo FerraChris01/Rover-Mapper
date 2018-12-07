@@ -41,6 +41,7 @@
             this.lOrientamento = new System.Windows.Forms.Label();
             this.lDebug = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.bReset = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -158,11 +159,22 @@
             this.panel1.Size = new System.Drawing.Size(170, 170);
             this.panel1.TabIndex = 0;
             // 
+            // bReset
+            // 
+            this.bReset.Location = new System.Drawing.Point(28, 634);
+            this.bReset.Name = "bReset";
+            this.bReset.Size = new System.Drawing.Size(100, 23);
+            this.bReset.TabIndex = 9;
+            this.bReset.Text = "Reset mappa";
+            this.bReset.UseVisualStyleBackColor = true;
+            this.bReset.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1027, 669);
+            this.Controls.Add(this.bReset);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lOrientamento);
             this.Controls.Add(this.label1);
@@ -199,6 +211,7 @@
         private System.Windows.Forms.Label lOrientamento;
         private System.Windows.Forms.Label lDebug;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button bReset;
     }
 }
 
