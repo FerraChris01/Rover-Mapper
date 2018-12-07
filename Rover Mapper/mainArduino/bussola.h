@@ -11,18 +11,16 @@ class Bussola
   private:
     Motors motori;
     MechaQMC5883 qmc;
-    bool rotDx;
-    bool rotSx;
     int angoloStart;
     int gradiArrivo;
     int gradiRot;
-    bool particolare = false;
+    int gradiToMove=-1;
+    bool rotazione = false;
+    //bool particolare = false;
 
   public:
     Bussola()
     {
-      rotDx = false;
-      rotSx = false;
       Wire.begin();
 
       qmc.setMode(Mode_Continuous, ODR_200Hz, RNG_8G, OSR_512);
@@ -56,25 +54,34 @@ class Bussola
 
 
           //Effettuo la correzione
-          if (ris == "orario") {
+          if (!(ris == "orario")) {
             Serial.println("Ruoto dx");
-            motori.spinOrario();
+            if(gradiToMove<=30){
+              motori.ruotaDx();
+            }else{
+              motori.spinOrario();
+            }
+            
           } else {
             Serial.println("Ruoto sx");
-            motori.spinAntiorario();
+            if(gradiToMove<=30){
+              motori.ruotaSx();
+            }else{
+              motori.spinAntiorario();
+            }
             
           }
-
 
 
         } while (!versoCorretto(direzione)); //Se sono ancora sforato, mi raddrizzo
 
         //Mi sono raddrizzato, quindi vado avanti
+        rotazione = false;
         motori.avanti();
       }
 
 
-      particolare = false;
+      //particolare = false;
 
     }
 
@@ -93,7 +100,7 @@ class Bussola
           if (gradiEffettivi <= getSomma(direzione, 2)) {
             return true;
           } else {
-            particolare = true;
+           //particolare = true;
             return false;
           }
         }
@@ -152,32 +159,24 @@ class Bussola
     void ruotaOrario(int gradiP)
     {
       gradiArrivo = (getDegree() + gradiP) % 360;
-      rotDx = true;
-      motori.spinOrario();
+      straighten(gradiArrivo);
+      rotazione = true;
+
     }
     void ruotaAntiorario(int gradiP)
     {
       gradiArrivo = (getDegree() - gradiP + 360) % 360;
-      rotSx = true;
-      motori.spinAntiorario();
+      rotazione = true;
+
     }
     bool stoRuotando()
     {
-      if (rotDx || rotSx) return true;
+      if (rotazione) return true;
       else return false;
     }
-    void checkRotation()
+    int getGradiRot()
     {
-      if (rotDx && ((getDegree() - angoloStart) >= gradiRot))
-      {
-        rotDx = false;
-        motori.motorsOff();
-      }
-      else if (rotSx && ((getDegree() + gradiRot) >= angoloStart))
-      {
-        rotSx = false;
-        motori.motorsOff();
-      }
+      return gradiArrivo;
     }
     void testSpeed()
     {
@@ -191,15 +190,24 @@ class Bussola
       int ris2 = getRis2(start, finale);
       if (ris1 < ris2) {
         if (ris1 > 0) {
+          gradiToMove=abs(ris1);
           return "anti";
         }
-        else return "orario";
+        else{
+          gradiToMove=abs(ris1);
+          return "orario";
+        }
+        
       }
         else {
           if (ris2 > 0) {
+            gradiToMove=abs(ris2);
             return "anti";
           }
-          else return "orario";
+          else{
+            gradiToMove=abs(ris2);
+            return "orario";
+          }
         }
 
       }
