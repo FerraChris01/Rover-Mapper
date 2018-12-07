@@ -128,6 +128,8 @@ namespace Rover
             //Aggiorna il grado della bussola 
             lOrientamento.Text = orientamento.ToString() + "°";
 
+
+            gComp.Clear(Color.FromArgb(255,255,255));
             gComp.DrawLine(pen, center, compassPoint);
             drawPixel(gComp, center);
 
