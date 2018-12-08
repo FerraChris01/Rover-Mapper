@@ -11,13 +11,13 @@ namespace Rover
     class CRover
     {
         //Attributi
-        public  float X { get; set; }
-        public  float Y { get; set; }
-        public  int orientamento { get; set; }
+        public float X { get; set; }
+        public float Y { get; set; }
+        public int orientamento { get; set; }
 
+        public int velocita { get; set; }
 
-        
-        public float getRadianti(int gradi) 
+        public float getRadianti(int gradi)
         {
             return (gradi * (float)(Math.PI / 180));
         }
@@ -29,14 +29,15 @@ namespace Rover
             X = 0;
             Y = 0;
             orientamento = 0;
-
+            velocita = 1;
         }
 
-        public void calcSpostamento(int o)
+        public void calcSpostamento(int o, int velocita)
         {
-            X += (float)Math.Cos(getRadianti(o));
-            Y += (float)Math.Sin(getRadianti(o));
+            X += (float)Math.Cos(getRadianti(o)) * velocita;
+            Y += (float)Math.Sin(getRadianti(o)) * velocita;
             orientamento = o;
+            this.velocita = velocita;
         }
 
     }

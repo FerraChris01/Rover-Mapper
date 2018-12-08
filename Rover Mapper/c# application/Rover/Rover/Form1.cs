@@ -23,7 +23,7 @@ namespace Rover
         //Porta seriale al solo scopo di test (Broch la sostituirà con la lettura via bluetooth)
         //private SerialPort bt;
         private CStringDecoder sD = null;
-        
+
         private String comPort = null;
 
         //Classe per la gestionde della mappa
@@ -55,7 +55,7 @@ namespace Rover
 
             this.StartPosition = FormStartPosition.CenterScreen;
 
-            sD = new CStringDecoder("COM5", 9600); 
+            sD = new CStringDecoder("COM5", 9600);
 
             map = new CMappa();
             scala = 10;
@@ -73,13 +73,13 @@ namespace Rover
         private void bt_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             sD.leggiRiga();
-            
+
 
             this.BeginInvoke((MethodInvoker)delegate ()
             {
-                textBox1.Text = sD.ReadLine();
-                disegna(sD.getDistDx(), sD.getDistSx(), sD.getOrientamento());
-
+                //listBox1.Items.Add(sD.ReadLine() + "\n");
+                disegna(sD.getDistDx(), sD.getDistSx(), sD.getOrientamento(), sD.getVelocita());
+                disegnaBussola(sD.getOrientamento());
 
             });
             //StreamWriter log = new StreamWriter("log.txt", true);
@@ -105,7 +105,8 @@ namespace Rover
             drawPixel(gMap, trasla(pDraw, p));
         }
 
-        public Point trasla(Panel panel, Point p) {
+        public Point trasla(Panel panel, Point p)
+        {
 
             Point ptW = new Point();
             ptW.X = p.X /** scala*/ + panel.Width / 2;
@@ -114,24 +115,34 @@ namespace Rover
             return ptW;
         }
 
-        private void disegna(int distDx, int distSx, int orientamento)
+        //Disegna la bussola 
+        private void disegnaBussola(int orientamento)
         {
-
-            map.add(distDx, distSx, orientamento); //Carattere 1 = dist da Dx - carattere 2 = dist da Sx - carattere 3 = angolo orienamento
-            disegnaPunto(map.pDx.Last<Point>());
-            disegnaPunto(map.pSx.Last<Point>());
-
+            //BUSSOLA
             bussola.CalcolaPunto(orientamento);
             Point center = new Point(panel1.Width / 2, panel1.Height / 2);
             Point compassPoint = trasla(panel1, bussola.p);
+
+
 
             //Aggiorna il grado della bussola 
             lOrientamento.Text = orientamento.ToString() + "°";
 
 
-            gComp.Clear(Color.FromArgb(255,255,255));
+            gComp.Clear(Color.FromArgb(255, 255, 255));
             gComp.DrawLine(pen, center, compassPoint);
             drawPixel(gComp, center);
+        }
+        private void disegna(int distDx, int distSx, int orientamento, int velocita)
+        {
+
+            map.add(distDx, distSx, orientamento, velocita); //Carattere 1 = dist da Dx - carattere 2 = dist da Sx - carattere 3 = angolo orienamento
+            disegnaPunto(map.pDx.Last<Point>());
+            disegnaPunto(map.pSx.Last<Point>());
+
+
+
+
 
             //ROBA PER TESTARE IL BLUETOOTH....
             //this.BeginInvoke((MethodInvoker)delegate ()
@@ -149,16 +160,16 @@ namespace Rover
         {
             //invio S quando viene premuto il tasto, TODO l'arudino capisce e starta
             //bt.inviaSeriale("ciao");
-            /*bt.WriteLine("ciao"); */          //prova
-                                                //if (bt.getTesto() != "")
-                                                //textBox1.Text = bt.getTesto();
+            sD.WriteLine("A");           //prova
+                                         //if (bt.getTesto() != "")
+                                         //textBox1.Text = bt.getTesto();
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             //invio W quando viene premuto il tasto, TODO l'arudino capisce e si ferma
-            //bt.Write("W");
+            sD.WriteLine("B");
         }
 
         private void opzioniToolStripMenuItem_Click(object sender, EventArgs e)
@@ -203,7 +214,8 @@ namespace Rover
             {
                 riga = f.ReadLine();
                 lOrientamento.Text = sD.getOrientamento(riga).ToString() + "°";
-                disegna(sD.getDistDx(riga), sD.getDistSx(riga), sD.getOrientamento(riga));
+                disegna(sD.getDistDx(riga), sD.getDistSx(riga), sD.getOrientamento(riga), sD.getVelocita(riga));
+                disegnaBussola(sD.getOrientamento(riga));
             }
             f.Close();
         }

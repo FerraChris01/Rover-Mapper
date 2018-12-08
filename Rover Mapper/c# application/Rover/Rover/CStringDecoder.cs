@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
@@ -37,16 +38,27 @@ namespace Rover
             this.PortName = PortName;
             this.BaudRate = BaudRate;
         }
-        
+
         public void leggiRiga()
         {
-            riga = ReadLine();
-            campi = riga.Split(';');
+            try
+            {
+                riga = ReadLine();
+                StreamWriter f = new StreamWriter("log.csv");
+                f.WriteLine(riga);
+                f.Close();
+
+                campi = riga.Split(';');
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         public int getDistDx()
         {
-            return calc(campi[0]);
+            return calc(campi.Length > 0 ? campi[0] : "");
         }
 
         public int getDistDx(String strdaDecod)
@@ -56,7 +68,7 @@ namespace Rover
 
         public int getDistSx()
         {
-            return calc(campi[1]);
+            return calc(campi.Length > 1 ? campi[1] : "");
         }
 
         public int getDistSx(String strdaDecod)
@@ -66,12 +78,22 @@ namespace Rover
 
         public int getOrientamento()
         {
-            return calc(campi[2]);
+            return calc(campi.Length > 2 ? campi[2] : "");
         }
 
         public int getOrientamento(String strdaDecod)
         {
             return calc(strdaDecod.Split(';')[2]);
+        }
+
+        public int getVelocita()
+        {
+            return calc(campi.Length > 3 ? campi[3] : "");
+        }
+
+        public int getVelocita(String strdaDecod)
+        {
+            return calc(strdaDecod.Split(';')[3]);
         }
 
 

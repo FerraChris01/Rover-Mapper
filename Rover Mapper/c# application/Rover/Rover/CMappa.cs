@@ -41,11 +41,11 @@ namespace Rover
             //distFromP = 0;
         }
         //Il sequente metodo permette di aggiungere due nuovi punti a destra e a sinistra mediamnte le due distanze
-        public void add(int distanzaDx, int distanzaSx, int orientamento)
+        public void add(int distanzaDx, int distanzaSx, int orientamento, int velocita)
         {
 
             //Ricevo i dati dal bluetooth
-            rover.calcSpostamento(orientamento);
+            rover.calcSpostamento(orientamento, velocita);
             float xDx = rover.X + (float)Math.Cos((double)rover.getRadianti(orientamento + 90)) * distanzaDx;
             float yDx = rover.Y + (float)Math.Sin((double)rover.getRadianti(orientamento + 90)) * distanzaDx;
 
@@ -53,11 +53,11 @@ namespace Rover
             float ySx = rover.Y + (float)Math.Sin((double)rover.getRadianti(orientamento - 90)) * distanzaSx;
 
 
-            pDx.Add(new Point((int)xDx,(int)yDx));
+            pDx.Add(new Point((int)xDx, (int)yDx));
             pSx.Add(new Point((int)xSx, (int)ySx));
 
-           
-            
+
+
             //I CALCOLI IN QUESTO METODO VANNO FATTI CONSIDERANDO IL PIANO TRADIZIONALE (Il form si occuperà di invertire la y)
 
 
