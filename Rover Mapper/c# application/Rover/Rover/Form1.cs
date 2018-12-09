@@ -26,6 +26,8 @@ namespace Rover
 
         private String comPort = null;
 
+        private bool status = false;
+
         //Classe per la gestionde della mappa
         CMappa map;
 
@@ -160,7 +162,7 @@ namespace Rover
         {
             //invio S quando viene premuto il tasto, TODO l'arudino capisce e starta
             //bt.inviaSeriale("ciao");
-            sD.WriteLine("A");           //prova
+            sD.Write("START");           //prova
                                          //if (bt.getTesto() != "")
                                          //textBox1.Text = bt.getTesto();
 
@@ -169,12 +171,12 @@ namespace Rover
         private void button1_Click(object sender, EventArgs e)
         {
             //invio W quando viene premuto il tasto, TODO l'arudino capisce e si ferma
-            sD.WriteLine("B");
+            sD.Write("STOP");
         }
 
         private void opzioniToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form2 frm = new Form2(comPort);
+            Form2 frm = new Form2(comPort, status);
             frm.StartPosition = FormStartPosition.CenterScreen;
             DialogResult res = frm.ShowDialog();
 
@@ -182,6 +184,13 @@ namespace Rover
             {
                 comPort = frm.getPort();
                 openPort();
+            }
+            else if (res == DialogResult.Abort)
+            {
+                comPort = "";
+                sD.DtrEnable = false;
+                sD.Close();
+                status = false;
             }
         }
         private void openPort()
@@ -194,6 +203,7 @@ namespace Rover
                     sD.DtrEnable = true;
                     sD.Open();
                     sD.DataReceived += bt_DataReceived;
+                    status = true;
                 }
             }
             catch (IOException ex)

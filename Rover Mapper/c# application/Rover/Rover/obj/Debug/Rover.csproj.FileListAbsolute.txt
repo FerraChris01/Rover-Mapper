@@ -141,3 +141,14 @@ C:\Users\Samuele Peduzzi\Source\Repos\Rover-Mapper2\Rover Mapper\c# application\
 C:\Users\Samuele Peduzzi\Source\Repos\Rover-Mapper2\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.Form2.resources
 C:\Users\Samuele Peduzzi\Source\Repos\Rover-Mapper2\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.Properties.Resources.resources
 C:\Users\Samuele Peduzzi\Source\Repos\Rover-Mapper2\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.csproj.GenerateResource.Cache
+C:\Users\feder\Desktop\C#\RoverC#\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.csprojAssemblyReference.cache
+C:\Users\feder\Desktop\C#\RoverC#\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.Form1.resources
+C:\Users\feder\Desktop\C#\RoverC#\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.Form2.resources
+C:\Users\feder\Desktop\C#\RoverC#\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.Properties.Resources.resources
+C:\Users\feder\Desktop\C#\RoverC#\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.csproj.GenerateResource.cache
+C:\Users\feder\Desktop\C#\RoverC#\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.csproj.CoreCompileInputs.cache
+C:\Users\feder\Desktop\C#\RoverC#\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.exe
+C:\Users\feder\Desktop\C#\RoverC#\Rover Mapper\c# application\Rover\Rover\obj\Debug\Rover.pdb
+C:\Users\feder\Desktop\C#\RoverC#\Rover Mapper\c# application\Rover\Rover\bin\Debug\Rover.exe.config
+C:\Users\feder\Desktop\C#\RoverC#\Rover Mapper\c# application\Rover\Rover\bin\Debug\Rover.exe
+C:\Users\feder\Desktop\C#\RoverC#\Rover Mapper\c# application\Rover\Rover\bin\Debug\Rover.pdb

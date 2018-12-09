@@ -13,9 +13,10 @@ namespace Rover
     public partial class Form2 : Form
     {
         public string ReturnText { get; set; }
-        public Form2(String porta)
-        {
+        public Form2(String porta, bool status)
+        {            
             InitializeComponent();
+            if (!status) detach.Enabled = false;
             foreach (string s in System.IO.Ports.SerialPort.GetPortNames())
             {
                 ports.Items.Add(s);
@@ -32,9 +33,8 @@ namespace Rover
             try
             {
                 ReturnText = this.ports.SelectedItem.ToString();
-                //this.Visible = false;
                 this.DialogResult = DialogResult.OK;
-                this.Close();
+                //this.Close();
 
             }
             catch (System.NullReferenceException ex)
@@ -54,6 +54,11 @@ namespace Rover
         private void ports_SelectedIndexChanged(object sender, EventArgs e)
         {
             ReturnText = this.ports.SelectedItem.ToString();
+        }
+
+        private void detach_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Abort;
         }
     }
 }
