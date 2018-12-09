@@ -40,8 +40,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lOrientamento = new System.Windows.Forms.Label();
             this.lDebug = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.bReset = new System.Windows.Forms.Button();
+            this.pCompass = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -152,13 +152,6 @@
             this.lDebug.TabIndex = 8;
             this.lDebug.Text = "Debug";
             // 
-            // panel1
-            // 
-            this.panel1.Location = new System.Drawing.Point(28, 166);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(170, 170);
-            this.panel1.TabIndex = 0;
-            // 
             // bReset
             // 
             this.bReset.Location = new System.Drawing.Point(28, 634);
@@ -169,13 +162,22 @@
             this.bReset.UseVisualStyleBackColor = true;
             this.bReset.Click += new System.EventHandler(this.button2_Click);
             // 
+            // pCompass
+            // 
+            this.pCompass.BackgroundImage = global::Rover.Properties.Resources.CompassRacing;
+            this.pCompass.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pCompass.Location = new System.Drawing.Point(28, 166);
+            this.pCompass.Name = "pCompass";
+            this.pCompass.Size = new System.Drawing.Size(170, 170);
+            this.pCompass.TabIndex = 0;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1027, 669);
             this.Controls.Add(this.bReset);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pCompass);
             this.Controls.Add(this.lOrientamento);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lDebug);
@@ -210,7 +212,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lOrientamento;
         private System.Windows.Forms.Label lDebug;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pCompass;
         private System.Windows.Forms.Button bReset;
     }
 }

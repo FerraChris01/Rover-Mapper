@@ -19,8 +19,8 @@ namespace Rover
 
         public void CalcolaPunto(int gradi)
         {
-            int x = (int)(100 * (Math.Cos(getRadianti(gradi))));
-            int y = (int)(100 * (Math.Sin(getRadianti(gradi))));
+            int x = (int)(100 * (Math.Cos(getRadianti(90 - gradi))));
+            int y = (int)(100 * (Math.Sin(getRadianti(90 - gradi))));
             p = new Point(x , y);
         }
 

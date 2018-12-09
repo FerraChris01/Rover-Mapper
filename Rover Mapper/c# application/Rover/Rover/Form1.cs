@@ -31,7 +31,7 @@ namespace Rover
         //Classe per la gestionde della mappa
         CMappa map;
 
-        int drawPointCounter;
+        
 
         //Valore di scala per la rappresentazione dei punti
         int scala;
@@ -63,10 +63,10 @@ namespace Rover
 
             map = new CMappa();
             scala = 10;
-            drawPointCounter = 0;
+            
 
             gMap = pDraw.CreateGraphics();
-            gComp = panel1.CreateGraphics();
+            gComp = pCompass.CreateGraphics();
             pen = new Pen(Color.Red);
 
             bussola = new Compass();
@@ -124,30 +124,38 @@ namespace Rover
         private void disegnaBussola(int orientamento)
         {
             //BUSSOLA
-            bussola.CalcolaPunto(90 + orientamento);
-            Point center = new Point(panel1.Width / 2, panel1.Height / 2);
-            Point compassPoint = trasla(panel1, bussola.p);
+            bussola.CalcolaPunto(orientamento);
+            Point center = new Point(pCompass.Width / 2, pCompass.Height / 2);
+            Point compassPoint = trasla(pCompass, bussola.p);
 
 
 
             //Aggiorna il grado della bussola 
             lOrientamento.Text = orientamento.ToString() + "°";
 
-
-            gComp.Clear(Color.FromArgb(255, 255, 255));
+            gComp.Clear(pCompass.BackColor);
+            gComp.DrawImage(Properties.Resources.CompassRacing, new Point(0,0));
+            
             gComp.DrawLine(pen, center, compassPoint);
+            gComp.FillRectangle(b, new Rectangle(compassPoint, new Size(10,10)));
             drawPixel(gComp, center);
         }
         private void disegna(int distDx, int distSx, int orientamento, int velocita)
         {
+            if (distDx != -1 && distSx != -1)
+                map.add(distDx, distSx, orientamento, velocita); //Carattere 1 = dist da Dx - carattere 2 = dist da Sx - carattere 3 = angolo orienamento
+            else if (distDx == -1)
+                map.add(0, distSx, orientamento, velocita);
+            else
+                map.add(distDx, 0, orientamento, velocita);
 
-            map.add(distDx, distSx, orientamento, velocita); //Carattere 1 = dist da Dx - carattere 2 = dist da Sx - carattere 3 = angolo orienamento
+
             disegnaPunto(map.pDx.Last<Point>());
             disegnaPunto(map.pSx.Last<Point>());
 
             
 
-            drawPointCounter++;
+            
 
 
 
@@ -159,12 +167,7 @@ namespace Rover
         }
 
 
-        void mapCorrector()
-        {
-            if (drawPointCounter % 10 == 0)
-                gMap.DrawLine(pen, new Point(pDraw.Width / 2, pDraw.Height / 2), map.pDx.Last<Point>());
-        }
-
+        
         private void Form1_Load(object sender, EventArgs e)
         {
 
