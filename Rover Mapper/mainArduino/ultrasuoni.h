@@ -64,9 +64,7 @@ public:
       ris = 0.034 * durata / 2;
     
     return ris;
-   }
-
-  
+   }  
 
   float getFront()
   {
@@ -79,13 +77,6 @@ public:
   float getSx()
   {
     return dSx;
-  }
-  
-    
+  }    
   
 };
-
-
-
-
-

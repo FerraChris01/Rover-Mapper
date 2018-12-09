@@ -7,6 +7,10 @@
 
 class Motors 
 {
+  private:
+    float spDx;
+    float spSx;
+    
   public:
     Motors() 
     { 
@@ -16,15 +20,28 @@ class Motors
 	  pinMode (avantiSx, OUTPUT);
 	  pinMode (enDx, OUTPUT);
 	  pinMode (enSx, OUTPUT);
-	  
-	  analogWrite(enDx, 100);
-      analogWrite(enSx, 100);  
+
+    spDx = spSx = 100;    
+	  analogWrite(enDx, spDx);
+    analogWrite(enSx, spSx);  
     }
-	void setSpeedMS(int sp) 
+	void setSpeedMS(float dx, float sx) 
 	{
-		analogWrite(enDx, sp);
-		analogWrite(enSx, sp);
+    spDx = dx;
+    spSx = sx;
+		analogWrite(enDx, spDx);
+		analogWrite(enSx, spSx);
 	}
+ float getDx(){
+  return spDx;
+ }
+ float getSx(){
+  return spSx;
+ }
+  int getSpeedMS()
+  {
+    return ((spDx + spSx) / 2);
+  }
 	void motorsOff()
 	{
 		digitalWrite(avantiDx, LOW);
@@ -68,4 +85,3 @@ class Motors
 	}
     
 };
-
