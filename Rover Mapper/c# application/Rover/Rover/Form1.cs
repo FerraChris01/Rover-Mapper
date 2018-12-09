@@ -31,6 +31,8 @@ namespace Rover
         //Classe per la gestionde della mappa
         CMappa map;
 
+        int drawPointCounter;
+
         //Valore di scala per la rappresentazione dei punti
         int scala;
         //Creazione Bussola
@@ -61,6 +63,7 @@ namespace Rover
 
             map = new CMappa();
             scala = 10;
+            drawPointCounter = 0;
 
             gMap = pDraw.CreateGraphics();
             gComp = panel1.CreateGraphics();
@@ -121,7 +124,7 @@ namespace Rover
         private void disegnaBussola(int orientamento)
         {
             //BUSSOLA
-            bussola.CalcolaPunto(orientamento);
+            bussola.CalcolaPunto(90 + orientamento);
             Point center = new Point(panel1.Width / 2, panel1.Height / 2);
             Point compassPoint = trasla(panel1, bussola.p);
 
@@ -142,7 +145,9 @@ namespace Rover
             disegnaPunto(map.pDx.Last<Point>());
             disegnaPunto(map.pSx.Last<Point>());
 
+            
 
+            drawPointCounter++;
 
 
 
@@ -151,6 +156,13 @@ namespace Rover
             //{
             //    textBox1.Text += line;
             //});
+        }
+
+
+        void mapCorrector()
+        {
+            if (drawPointCounter % 10 == 0)
+                gMap.DrawLine(pen, new Point(pDraw.Width / 2, pDraw.Height / 2), map.pDx.Last<Point>());
         }
 
         private void Form1_Load(object sender, EventArgs e)
