@@ -60,7 +60,7 @@
             this.pDraw.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pDraw.Location = new System.Drawing.Point(214, 12);
             this.pDraw.Name = "pDraw";
-            this.pDraw.Size = new System.Drawing.Size(801, 645);
+            this.pDraw.Size = new System.Drawing.Size(801, 786);
             this.pDraw.TabIndex = 1;
             // 
             // button1
@@ -75,7 +75,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(28, 418);
+            this.textBox1.Location = new System.Drawing.Point(28, 572);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 161);
@@ -116,7 +116,7 @@
             // 
             // DEMO
             // 
-            this.DEMO.Location = new System.Drawing.Point(28, 602);
+            this.DEMO.Location = new System.Drawing.Point(28, 745);
             this.DEMO.Name = "DEMO";
             this.DEMO.Size = new System.Drawing.Size(100, 26);
             this.DEMO.TabIndex = 5;
@@ -127,7 +127,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 123);
+            this.label1.Location = new System.Drawing.Point(25, 140);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(50, 13);
             this.label1.TabIndex = 6;
@@ -146,7 +146,7 @@
             // lDebug
             // 
             this.lDebug.AutoSize = true;
-            this.lDebug.Location = new System.Drawing.Point(25, 384);
+            this.lDebug.Location = new System.Drawing.Point(25, 547);
             this.lDebug.Name = "lDebug";
             this.lDebug.Size = new System.Drawing.Size(39, 13);
             this.lDebug.TabIndex = 8;
@@ -154,7 +154,7 @@
             // 
             // bReset
             // 
-            this.bReset.Location = new System.Drawing.Point(28, 634);
+            this.bReset.Location = new System.Drawing.Point(28, 777);
             this.bReset.Name = "bReset";
             this.bReset.Size = new System.Drawing.Size(100, 23);
             this.bReset.TabIndex = 9;
@@ -175,7 +175,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1027, 669);
+            this.ClientSize = new System.Drawing.Size(1027, 810);
             this.Controls.Add(this.bReset);
             this.Controls.Add(this.pCompass);
             this.Controls.Add(this.lOrientamento);

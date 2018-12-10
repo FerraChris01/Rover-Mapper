@@ -7,6 +7,7 @@ using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -137,19 +138,15 @@ namespace Rover
             gComp.DrawImage(Properties.Resources.CompassRacing, new Point(0,0));
             
             gComp.DrawLine(pen, center, compassPoint);
-            gComp.FillRectangle(b, new Rectangle(compassPoint, new Size(10,10)));
+
             drawPixel(gComp, center);
+
+            
         }
         private void disegna(int distDx, int distSx, int orientamento, int velocita)
         {
-            if (distDx != -1 && distSx != -1)
-                map.add(distDx, distSx, orientamento, velocita); //Carattere 1 = dist da Dx - carattere 2 = dist da Sx - carattere 3 = angolo orienamento
-            else if (distDx == -1)
-                map.add(0, distSx, orientamento, velocita);
-            else
-                map.add(distDx, 0, orientamento, velocita);
 
-
+            map.add(distDx, distSx, orientamento, velocita); //Carattere 1 = dist da Dx - carattere 2 = dist da Sx - carattere 3 = angolo orienamento   
             disegnaPunto(map.pDx.Last<Point>());
             disegnaPunto(map.pSx.Last<Point>());
 
@@ -269,7 +266,8 @@ namespace Rover
         //Pulsante reset mappa
         private void button2_Click(object sender, EventArgs e)
         {
-            //gMap.Clear(gMap.GetNearestColor());
+            gMap.Clear(pDraw.BackColor);
+            map.reset();
         }
     }
 }

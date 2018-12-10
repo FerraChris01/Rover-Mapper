@@ -24,6 +24,10 @@ namespace Rover
         public List<Point> pDx { get; }
         public List<Point> pSx { get; }
 
+        //Variabili utili alla correzione errori
+        private int  oldDistSx;
+        private int oldDistDx;
+
         //Distanza dal punto di partenza
         //private int distFromP;
 
@@ -43,20 +47,33 @@ namespace Rover
         //Il sequente metodo permette di aggiungere due nuovi punti a destra e a sinistra mediamnte le due distanze
         public void add(int distanzaDx, int distanzaSx, int orientamento, int velocita)
         {
-
             //Ricevo i dati dal bluetooth
-            rover.calcSpostamento(orientamento, velocita);
-            float xDx = rover.X + (float)Math.Cos((double)rover.getRadianti(orientamento + 90)) * distanzaDx;
-            float yDx = rover.Y + (float)Math.Sin((double)rover.getRadianti(orientamento + 90)) * distanzaDx;
-
-            float xSx = rover.X + (float)Math.Cos((double)rover.getRadianti(orientamento - 90)) * distanzaSx;
-            float ySx = rover.Y + (float)Math.Sin((double)rover.getRadianti(orientamento - 90)) * distanzaSx;
 
 
-            pDx.Add(new Point((int)xDx, (int)yDx));
-            pSx.Add(new Point((int)xSx, (int)ySx));
+            //Se la variazione di distanza rispetto la precedente è troppo drastica non viene considerata
+            if (Math.Abs(distanzaDx - oldDistDx) > 40)
+                distanzaDx = oldDistDx;
+            if (Math.Abs(distanzaSx - oldDistSx) > 40)
+                distanzaSx = oldDistSx;
+
+            oldDistDx = distanzaDx;
+            oldDistSx = distanzaSx;
+
+            if (distanzaDx != -1 && distanzaSx != -1)
+            {
+                rover.calcSpostamento(orientamento, velocita);
+                float xDx = rover.X + (float)Math.Cos((double)rover.getRadianti(orientamento + 90)) * distanzaDx;
+                float yDx = rover.Y + (float)Math.Sin((double)rover.getRadianti(orientamento + 90)) * distanzaDx;
+
+                float xSx = rover.X + (float)Math.Cos((double)rover.getRadianti(orientamento - 90)) * distanzaSx;
+                float ySx = rover.Y + (float)Math.Sin((double)rover.getRadianti(orientamento - 90)) * distanzaSx;
 
 
+                pDx.Add(new Point((int)xDx, (int)yDx));
+                pSx.Add(new Point((int)xSx, (int)ySx));
+            }
+            else 
+                rover.calcSpostamento(orientamento, velocita);
 
             //I CALCOLI IN QUESTO METODO VANNO FATTI CONSIDERANDO IL PIANO TRADIZIONALE (Il form si occuperà di invertire la y)
 
@@ -77,6 +94,12 @@ namespace Rover
             //else if (orientamento == EST)   
 
 
+        }
+        public void reset()
+        {
+            pDx.Clear();
+            pSx.Clear();
+            rover = new CRover();
         }
 
 
