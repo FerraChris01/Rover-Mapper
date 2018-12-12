@@ -7,10 +7,6 @@
 
 class Motors 
 {
-  private:
-    float spDx;
-    float spSx;
-    
   public:
     Motors() 
     { 
@@ -20,28 +16,15 @@ class Motors
 	  pinMode (avantiSx, OUTPUT);
 	  pinMode (enDx, OUTPUT);
 	  pinMode (enSx, OUTPUT);
-
-    spDx = spSx = 100;    
-	  analogWrite(enDx, spDx);
-    analogWrite(enSx, spSx);  
+   	  
+	  analogWrite(enDx, 100);
+    analogWrite(enSx, 100);  
     }
-	void setSpeedMS(float dx, float sx) 
+	void setSpeedMS(int spDx, int spSx) 
 	{
-    spDx = dx;
-    spSx = sx;
 		analogWrite(enDx, spDx);
 		analogWrite(enSx, spSx);
 	}
- float getDx(){
-  return spDx;
- }
- float getSx(){
-  return spSx;
- }
-  int getSpeedMS()
-  {
-    return ((spDx + spSx) / 2);
-  }
 	void motorsOff()
 	{
 		digitalWrite(avantiDx, LOW);
@@ -51,9 +34,12 @@ class Motors
 	}
 	void avanti() 
 	{
-		motorsOff();
+    motorsOff();
+    setSpeedMS(100,100);
 		digitalWrite(avantiDx, HIGH);
 		digitalWrite(avantiSx, HIGH);
+    delay(100);
+    setSpeedMS(70,70);
 	}
 	void indietro()
 	{
@@ -61,14 +47,16 @@ class Motors
 		digitalWrite(indietroDx, HIGH);
 		digitalWrite(indietroSx, HIGH);
 	}
-	void spinOrario()        
+	void spinAntiorario()        
 	{
+    setSpeedMS(150,150);
 		motorsOff();
 		digitalWrite(avantiDx, HIGH);
 		digitalWrite(indietroSx, HIGH);
 	}
-	void spinAntiorario()       
+	void spinOrario()       
 	{
+    setSpeedMS(150,150);
 		motorsOff();
 		digitalWrite(avantiSx, HIGH);
 		digitalWrite(indietroDx, HIGH);

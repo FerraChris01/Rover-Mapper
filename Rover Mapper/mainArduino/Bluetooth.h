@@ -21,10 +21,7 @@ class Bluetooth {
     void sendData(int dDx, int dSx, int angolo, int velMotori)
     {
       bt.println(String(dDx) + ";" + String(dSx) + ";" + String(angolo) + ";" + String(velMotori));
-      //Serial.println(String(dDx) + ";" + String(dSx) + ";" + String(angolo) + ";" + String(velMotori));
     }
-
-    
     void readData() {
       while (bt.available() > 0)
         comandi[numEl++] = bt.readString();   
@@ -54,3 +51,4 @@ class Bluetooth {
 
 
 };
+

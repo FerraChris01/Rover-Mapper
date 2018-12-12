@@ -8,9 +8,9 @@
 class Ultrasuoni
 {
 private:
-  float dDx;
-  float dSx;
-  float dF;
+  int dDx;
+  int dSx;
+  int dF;
   
 public:
   Ultrasuoni()
@@ -29,10 +29,10 @@ public:
     dSx = dX(10, 11);
     dF =  dXA(A0, A1);
   }
-  float dX(int t, int e)
+  int dX(int t, int e)
   {   
-    float ris;
-    float durata = 0.0;
+    int ris;
+    int durata = 0.0;
     digitalWrite(t, LOW );
     digitalWrite(t, HIGH );
     delayMicroseconds(10);
@@ -47,10 +47,10 @@ public:
     
     return ris;
   }
-  float dXA(int t, int e)
+  int dXA(int t, int e)
   {   
-    float ris;
-    float durata = 0.0;
+    int ris;
+    int durata = 0.0;
     digitalWrite(t, LOW);
     digitalWrite(t, HIGH);
     delayMicroseconds(10);
@@ -64,19 +64,27 @@ public:
       ris = 0.034 * durata / 2;
     
     return ris;
-   }  
+   }
+  
 
-  float getFront()
+  int getFront()
   {
     return dF;
   }
-  float getDx()
+  int getDx()
   {
     return dDx;
   }
-  float getSx()
+  int getSx()
   {
     return dSx;
-  }    
+  }
+  
+    
   
 };
+
+
+
+
+
